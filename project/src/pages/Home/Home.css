@@ -1,0 +1,18 @@
+.map-container {
+   height: 600px; 
+   margin: 0 auto;
+   max-width: 800px; 
+}
+
+.leaflet-container {
+   height: 80vh;
+   width: 180vh;
+   margin: auto;
+   position: absolute;
+   top: 0; bottom: 0; left: 0; right: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+
