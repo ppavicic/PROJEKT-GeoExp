@@ -146,3 +146,1692 @@ FOREIGN KEY ("city_id")
   [1m[36mCity Load (1.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
   [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
   [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mDROP TABLE "questions"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (1.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.6ms)[0m  [1m[35mDROP TABLE "cities"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.2ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying NOT NULL, "status" character varying NOT NULL, "description" text, "longitude" float, "latitude" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cities_on_name" ON "cities" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "text" text NOT NULL, "correct_answer" character varying, "offered_answers" text, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1e790bd8a5"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_questions_on_city_id" ON "questions" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231027101050)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying NOT NULL, "password_digest" character varying NOT NULL, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101050"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "user_cities" ("id" bigserial primary key, "user_id" bigint, "ciy_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_cf19116c1f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_8307283d5f"
+FOREIGN KEY ("ciy_id")
+  REFERENCES "ciys" ("id")
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "user_cities" ("id" bigserial primary key, "user_id" bigint, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_cf19116c1f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_f8a3b4b44f"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_user_id" ON "user_cities" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_city_id" ON "user_cities" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101550"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mDROP TABLE "user_cities"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231027101550"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231027101050)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231027101050"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[35mDROP TABLE "questions"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.1ms)[0m  [1m[35mDROP TABLE "cities"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying NOT NULL, "status" character varying NOT NULL, "description" text, "longitude" float, "latitude" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cities_on_name" ON "cities" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "text" text NOT NULL, "correct_answer" character varying, "offered_answers" text, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1e790bd8a5"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_questions_on_city_id" ON "questions" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231027101050)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying NOT NULL, "password_digest" character varying NOT NULL, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_lower_name" ON "users" (lower(name))[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101050"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "user_cities" ("id" bigserial primary key, "user_id" bigint, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_cf19116c1f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_f8a3b4b44f"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_user_id" ON "user_cities" ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_city_id" ON "user_cities" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101550"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (4.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "testing"], ["password_digest", "$2a$12$BWR/LfydI4C8SOuMVc8tfuwcAEr7TFfbLYKAfHkBDkF7faIHjFdGO"], ["token", "ZaUfNsgJSznxYoKarTbWH5Bg"], ["created_at", "2023-10-27 10:31:10.605473"], ["updated_at", "2023-10-27 10:31:10.605473"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserCity Load (1.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (2.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[36mUserCity Load (0.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (3.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" INNER JOIN "user_cities" ON "cities"."id" = "user_cities"."city_id" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (2.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" INNER JOIN "user_cities" ON "cities"."id" = "user_cities"."city_id" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (2.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" INNER JOIN "user_cities" ON "cities"."id" = "user_cities"."city_id" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "a"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.2ms)[0m  [1m[35mDROP TABLE "user_cities"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (1.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231027101550"]]
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231027101050)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231027101050"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.8ms)[0m  [1m[35mDROP TABLE "questions"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE "cities"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7302198565734653490)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20231026214447)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text, "longitude" float, "latitude" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cities_on_name" ON "cities" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026214447"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20231026220301)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "text" text NOT NULL, "correct_answer" character varying, "offered_answers" text, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1e790bd8a5"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_questions_on_city_id" ON "questions" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231026220301"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20231027101050)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying NOT NULL, "password_digest" character varying NOT NULL, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_lower_name" ON "users" (lower(name))[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101050"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserCities (20231027101550)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "user_cities" ("id" bigserial primary key, "user_id" bigint, "city_id" bigint, "status" character varying DEFAULT 'inactive' NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_cf19116c1f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_f8a3b4b44f"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_user_id" ON "user_cities" ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_city_id" ON "user_cities" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231027101550"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7302198565734653490)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/users/register" for 127.0.0.1 at 2023-10-28 12:37:34 +0200
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/users/register"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 12:37:41 +0200
+  
+Zeitwerk::NameError (expected file /Users/dominik/Desktop/ProjektR/PROJEKT-GeoExp/backend/app/controllers/api/users_controller.rb to define constant Api::UsersController, but didn't):
+  
+zeitwerk (2.6.12) lib/zeitwerk/loader/callbacks.rb:33:in `on_file_autoloaded'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:31:in `require'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `const_get'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `block in constantize'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `each'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `inject'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `constantize'
+activesupport (6.1.7.6) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.7.6) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.7.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+bullet (7.1.2) lib/bullet/rack.rb:14:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 12:38:06 +0200
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :name, :password[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 25ms (Views: 4.3ms | ActiveRecord: 13.0ms | Allocations: 11357)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 12:38:34 +0200
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :name, :password[0m
+[31mUnpermitted parameters: :name, :password[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 51219ms (Views: 1.5ms | ActiveRecord: 9.7ms | Allocations: 34548)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 12:40:10 +0200
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Dominik"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (4.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Dominik"], ["password_digest", "$2a$12$O8niBSzM24CQsKpdtPEBCug4PWpyJuk/Wsd9423SmtGKSR4gWxyum"], ["token", "waySeYBZnvVvxhX42RkBMfPy"], ["created_at", "2023-10-28 10:40:34.149024"], ["updated_at", "2023-10-28 10:40:34.149024"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 23974ms (Views: 0.2ms | ActiveRecord: 23.0ms | Allocations: 43266)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:42:15 +0200
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 482)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:43:02 +0200
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 186)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:43:48 +0200
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 268)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:44:56 +0200
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 487)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:45:06 +0200
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1031)
+
+
+  
+NoMethodError (undefined method `find_by' for nil:NilClass):
+  
+app/controllers/api/sessions_controller.rb:6:in `create'
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 12:45:37 +0200
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Dominik"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 276ms (Views: 0.1ms | ActiveRecord: 7.8ms | Allocations: 8507)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 12:46:23 +0200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Petar", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Petar"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Petar"], ["password_digest", "$2a$12$JXoOy5VpmGFgE5PAWTueEe0EEqja7naMzT2c0wpwHlXxGABGJ5LKq"], ["token", "2JkG9grQxmEceFmDXnc4c4VT"], ["created_at", "2023-10-28 10:46:23.909297"], ["updated_at", "2023-10-28 10:46:23.909297"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 257ms (Views: 0.1ms | ActiveRecord: 14.2ms | Allocations: 9052)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-28 14:12:32 +0200
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Dominik"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Dominik"], ["password_digest", "$2a$12$wHOW.siQgJDFJ83/6FVt/ervvt1h4.Cdxj5zDY0GN7b..MmZKS35y"], ["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["created_at", "2023-10-28 12:12:33.193466"], ["updated_at", "2023-10-28 12:12:33.193466"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 269ms (Views: 0.2ms | ActiveRecord: 20.6ms | Allocations: 9043)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-28 14:12:39 +0200
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Dominik", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Dominik"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 267ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 1563)
+
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+  [1m[36mCity Create (2.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "description", "longitude", "latitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Zagreb"], ["description", "Zagreb je glavni grad Hrvatske"], ["longitude", 15.978], ["latitude", 45.8144], ["created_at", "2023-10-28 12:14:54.217998"], ["updated_at", "2023-10-28 12:14:54.217998"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserCity Create (4.7ms)[0m  [1m[32mINSERT INTO "user_cities" ("user_id", "city_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["city_id", 1], ["created_at", "2023-10-28 12:17:00.928616"], ["updated_at", "2023-10-28 12:17:00.928616"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 14:19:20 +0200
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/dominik/Desktop/ProjektR/PROJEKT-GeoExp/backend/app/controllers/api/user_cities_controller.rb to define constant Api::UserCitiesController, but didn't):
+  
+zeitwerk (2.6.12) lib/zeitwerk/loader/callbacks.rb:33:in `on_file_autoloaded'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:31:in `require'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `const_get'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `block in constantize'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `each'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `inject'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `constantize'
+activesupport (6.1.7.6) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.7.6) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.7.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+bullet (7.1.2) lib/bullet/rack.rb:14:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 14:19:58 +0200
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUserCity Load (1.6ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+  [1m[36mCity Load (1.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+Completed 200 OK in 66ms (Views: 0.2ms | ActiveRecord: 25.9ms | Allocations: 22267)
+
+
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 14:25:59 +0200
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+Completed 200 OK in 38ms (Views: 0.1ms | ActiveRecord: 14.5ms | Allocations: 22048)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 14:26:02 +0200
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZbb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 918)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 14:26:06 +0200
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 3.0ms | Allocations: 2366)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 19:51:34 +0200
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUserCity Load (2.6ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+  [1m[36mCity Load (1.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+Completed 200 OK in 49ms (Views: 0.1ms | ActiveRecord: 26.9ms | Allocations: 22048)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-28 19:52:08 +0200
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `current_user'
+  [1m[36mUserCity Load (1.3ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities"[0m
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:6:in `index'
+Completed 200 OK in 40ms (Views: 0.1ms | ActiveRecord: 19.5ms | Allocations: 22048)
+
+
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (5.1ms)[0m  [1m[32mINSERT INTO "questions" ("text", "correct_answer", "offered_answers", "city_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["text", "Koji je glavni grad Hrvatske"], ["correct_answer", "Zagreb"], ["offered_answers", "Zagreb;Karlovac;Osijek;Rijeka;Split"], ["city_id", 1], ["created_at", "2023-10-28 19:11:46.569532"], ["updated_at", "2023-10-28 19:11:46.569532"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-28 21:13:01 +0200
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 488)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-28 21:13:26 +0200
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 10.1ms | Allocations: 8597)
+
+
+  
+Zeitwerk::NameError (expected file /Users/dominik/Desktop/ProjektR/PROJEKT-GeoExp/backend/app/serializers/question_serializer.rb to define constant QuestionSerializer, but didn't):
+  
+app/controllers/api/user_cities_controller.rb:10:in `question'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-28 21:14:42 +0200
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10:in `current_user'
+  [1m[36mCity Load (1.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:16:in `city_question'
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:16:in `city_question'
+Completed 200 OK in 50ms (Views: 0.1ms | ActiveRecord: 17.9ms | Allocations: 20941)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:00:24 +0100
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (2.3ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (2.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 59ms (Views: 0.1ms | ActiveRecord: 27.4ms | Allocations: 23301)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-10-29 15:01:28 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Petar", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Petar"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Petar"], ["password_digest", "$2a$12$soaIp7YC4pmxV5nSumvzIOTJcIJ1YZ/diUem.3atBJoeK9c5wclze"], ["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["created_at", "2023-10-29 14:01:28.789295"], ["updated_at", "2023-10-29 14:01:28.789295"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 282ms (Views: 0.1ms | ActiveRecord: 13.8ms | Allocations: 4706)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-10-29 15:01:39 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"Petar", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Petar"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 277ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 1234)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:01:50 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 1934)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:01:55 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 3.0ms | Allocations: 2825)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:01:59 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 1915)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:02:02 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.2ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 27ms (Views: 0.1ms | ActiveRecord: 2.9ms | Allocations: 2809)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:22:08 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+  [1m[36mQuestion Load (2.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+Completed 200 OK in 62ms (Views: 0.1ms | ActiveRecord: 28.0ms | Allocations: 24228)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:22:26 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+  [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+Completed 200 OK in 27ms (Views: 0.2ms | ActiveRecord: 4.9ms | Allocations: 2661)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:22:27 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+  [1m[36mQuestion Load (1.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 4.0ms | Allocations: 2656)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:22:30 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+  [1m[36mQuestion Load (1.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.6ms | Allocations: 2655)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:30:07 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:21:in `city_question'
+Completed 200 OK in 59ms (Views: 0.3ms | ActiveRecord: 19.4ms | Allocations: 7758)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:30:15 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.6ms | Allocations: 2078)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:30:19 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 3.1ms | Allocations: 5784)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:32:38 +0100
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 41ms (Views: 0.1ms | ActiveRecord: 18.0ms | Allocations: 23333)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:32:41 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 2.8ms | Allocations: 1993)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:32:45 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.6ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."id" = $2 LIMIT $3[0m  [["user_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:22:in `city_question'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 2.4ms | Allocations: 4662)
+
+
+  
+NoMethodError (undefined method `question' for #<UserCity id: 1, user_id: 3, city_id: 1, status: "inactive", created_at: "2023-10-28 12:17:00.928616000 +0000", updated_at: "2023-10-28 12:17:00.928616000 +0000">):
+  
+app/controllers/api/user_cities_controller.rb:22:in `city_question'
+app/controllers/api/user_cities_controller.rb:11:in `question'
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:34:53 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 52ms (Views: 0.1ms | ActiveRecord: 17.3ms | Allocations: 18179)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:40:41 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 56ms (Views: 0.1ms | ActiveRecord: 13.6ms | Allocations: 21584)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:41:09 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 14.4ms | Allocations: 9405)
+
+
+  
+NoMethodError (undefined method `map' for nil:NilClass):
+  
+app/controllers/api/user_cities_controller.rb:22:in `city_question'
+app/controllers/api/user_cities_controller.rb:11:in `question'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:41:28 +0100
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:22:in `map'
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:22:in `map'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 12.2ms | Allocations: 18940)
+
+
+  
+NoMethodError (undefined method `question' for #<Enumerator: [#<City id: 1, name: "Zagreb", description: "Zagreb je glavni grad Hrvatske", longitude: 15.978, latitude: 45.8144, created_at: "2023-10-28 12:14:54.217998000 +0000", updated_at: "2023-10-28 12:14:54.217998000 +0000">]:find("1")>):
+  
+app/controllers/api/user_cities_controller.rb:22:in `city_question'
+app/controllers/api/user_cities_controller.rb:11:in `question'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:43:55 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (2.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:18:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 19.6ms | Allocations: 15375)
+
+
+  
+Pundit::NotDefinedError (unable to find policy `CityPolicy` for `#<City id: 1, name: "Zagreb", description: "Zagreb je glavni grad Hrvatske", longitude: 15.978, latitude: 45.8144, created_at: "2023-10-28 12:14:54.217998000 +0000", updated_at: "2023-10-28 12:14:54.217998000 +0000">`):
+  
+app/controllers/api/user_cities_controller.rb:19:in `set_city'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_cities" ON "users"."id" = "user_cities"."user_id" WHERE "user_cities"."city_id" = $1[0m  [["city_id", 1]]
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_cities" ON "users"."id" = "user_cities"."user_id" WHERE "user_cities"."city_id" = $1[0m  [["city_id", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:54:19 +0100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+AbstractController::ActionNotFound (The action 'question' could not be found for Api::UserCitiesController
+Did you mean?  render_json
+               current_user
+               render_unauthorized
+               index):
+  
+actionpack (6.1.7.6) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.7.6) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+bullet (7.1.2) lib/bullet/rack.rb:14:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:55:04 +0100
+  
+Zeitwerk::NameError (expected file /Users/dominik/Desktop/ProjektR/PROJEKT-GeoExp/backend/app/controllers/api/cities_controller.rb to define constant Api::CitiesController, but didn't):
+  
+zeitwerk (2.6.12) lib/zeitwerk/loader/callbacks.rb:33:in `on_file_autoloaded'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:31:in `require'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `const_get'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `block in constantize'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `each'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `inject'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `constantize'
+activesupport (6.1.7.6) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.7.6) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.7.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+bullet (7.1.2) lib/bullet/rack.rb:14:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:56:37 +0100
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/dominik/Desktop/ProjektR/PROJEKT-GeoExp/backend/app/controllers/api/cities_controller.rb to define constant Api::CitiesController, but didn't):
+  
+zeitwerk (2.6.12) lib/zeitwerk/loader/callbacks.rb:33:in `on_file_autoloaded'
+zeitwerk (2.6.12) lib/zeitwerk/kernel.rb:31:in `require'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `const_get'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:287:in `block in constantize'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `each'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `inject'
+activesupport (6.1.7.6) lib/active_support/inflector/methods.rb:283:in `constantize'
+activesupport (6.1.7.6) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.7.6) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.7.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.7.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+bullet (7.1.2) lib/bullet/rack.rb:14:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:57:06 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 71ms (Views: 0.1ms | ActiveRecord: 25.4ms | Allocations: 30808)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:57:11 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 4], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+Completed 403 Forbidden in 10ms (Views: 0.5ms | ActiveRecord: 2.6ms | Allocations: 3040)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:57:16 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (2.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (1.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 6.8ms | Allocations: 3476)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:58:13 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 48ms (Views: 0.2ms | ActiveRecord: 21.4ms | Allocations: 23599)
+
+
+Started GET "/api/user/cities/question?city-id=5" for 127.0.0.1 at 2023-10-29 15:58:29 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"5"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+Completed 404 Not Found in 9ms (Views: 1.3ms | ActiveRecord: 3.0ms | Allocations: 1788)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:58:34 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 3.5ms | Allocations: 3459)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:58:39 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 4], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+Completed 403 Forbidden in 14ms (Views: 0.4ms | ActiveRecord: 4.6ms | Allocations: 2976)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:58:48 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 3457)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:58:53 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 2.6ms | Allocations: 4001)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:58:57 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.3ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 9.6ms | Allocations: 1971)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 15:59:01 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.3ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.6ms | Allocations: 2863)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:59:11 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.9ms | Allocations: 3457)
+
+
+Started GET "/api/user/cities/question" for 127.0.0.1 at 2023-10-29 15:59:19 +0100
+Processing by Api::CitiesController#question as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 1274)
+
+
+Started GET "/api/user/cities/question" for 127.0.0.1 at 2023-10-29 15:59:22 +0100
+Processing by Api::CitiesController#question as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 404 Not Found in 4ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1261)
+
+
+Started GET "/api/user/cities/question" for 127.0.0.1 at 2023-10-29 15:59:22 +0100
+Processing by Api::CitiesController#question as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 404 Not Found in 7ms (Views: 1.4ms | ActiveRecord: 1.5ms | Allocations: 1261)
+
+
+Started GET "/api/user/cities/question?city-id=1" for 127.0.0.1 at 2023-10-29 15:59:29 +0100
+Processing by Api::CitiesController#question as */*
+  Parameters: {"city-id"=>"1"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:13:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:18:in `city_question'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 5.1ms | Allocations: 3457)
+
+
+  [1m[36mCity Load (0.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-10-29 17:28:42 +0100
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (3.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (2.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:8:in `index'
+Completed 200 OK in 36074ms (Views: 0.2ms | ActiveRecord: 43.6ms | Allocations: 57428)
+
+
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (1.2ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (0.4ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (2.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserCity Update (2.7ms)[0m  [1m[33mUPDATE "user_cities" SET "status" = $1, "updated_at" = $2 WHERE "user_cities"."id" = $3[0m  [["status", "active"], ["updated_at", "2023-10-29 16:33:18.647981"], ["id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (0.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (0.2ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/api/question" for 127.0.0.1 at 2023-10-29 17:36:37 +0100
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/question"):
+  
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:36:44 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.6ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (1.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 38.3ms | Allocations: 28425)
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/api/questions_controller.rb:29:in `update_status'
+app/controllers/api/questions_controller.rb:20:in `correct_answer'
+app/controllers/api/questions_controller.rb:11:in `answer_check'
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:37:41 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 21.1ms | Allocations: 22650)
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/api/questions_controller.rb:29:in `update_status'
+app/controllers/api/questions_controller.rb:20:in `correct_answer'
+app/controllers/api/questions_controller.rb:11:in `answer_check'
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:38:36 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (0.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+  [1m[36mUserCity Load (2.4ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND (1) LIMIT $2[0m  [["user_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 35.3ms | Allocations: 23654)
+
+
+  
+ActiveRecord::StatementInvalid (PG::DatatypeMismatch: ERROR:  argument of AND must be type boolean, not type integer
+LINE 1: ...r_cities" WHERE "user_cities"."user_id" = $1 AND (1) LIMIT $...
+                                                             ^
+):
+  
+app/controllers/api/questions_controller.rb:29:in `update_status'
+app/controllers/api/questions_controller.rb:20:in `correct_answer'
+app/controllers/api/questions_controller.rb:11:in `answer_check'
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:41:11 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+  [1m[36mUserCity Load (0.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2 LIMIT $3[0m  [["user_id", 3], ["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mCACHE City Load (0.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+Completed 200 OK in 53ms (Views: 0.4ms | ActiveRecord: 26.4ms | Allocations: 27897)
+
+
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserCity Update (1.4ms)[0m  [1m[33mUPDATE "user_cities" SET "status" = $1, "updated_at" = $2 WHERE "user_cities"."id" = $3[0m  [["status", "inactive"], ["updated_at", "2023-10-29 16:41:43.297199"], ["id", 1]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:41:56 +0100
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+  [1m[36mUserCity Load (0.4ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2 LIMIT $3[0m  [["user_id", 3], ["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mCACHE City Load (0.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mUserCity Update (1.3ms)[0m  [1m[33mUPDATE "user_cities" SET "status" = $1, "updated_at" = $2 WHERE "user_cities"."id" = $3[0m  [["status", "active"], ["updated_at", "2023-10-29 16:41:56.816564"], ["id", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+Completed 200 OK in 54ms (Views: 0.1ms | ActiveRecord: 28.0ms | Allocations: 34658)
+
+
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:42:26 +0100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreeb", "question"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.9ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+Completed 200 OK in 43ms (Views: 0.1ms | ActiveRecord: 20.1ms | Allocations: 28349)
+
+
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:42:35 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:33:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:10:in `answer_check'
+  [1m[36mUserCity Load (0.5ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2 LIMIT $3[0m  [["user_id", 3], ["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mCACHE City Load (0.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mUserCity Update (0.7ms)[0m  [1m[33mUPDATE "user_cities" SET "status" = $1, "updated_at" = $2 WHERE "user_cities"."id" = $3[0m  [["status", "active"], ["updated_at", "2023-10-29 16:42:35.807168"], ["id", 1]]
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/questions_controller.rb:29:in `update_status'
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 7.6ms | Allocations: 10252)
+
+
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:43:29 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:31:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 4], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+Completed 403 Forbidden in 32ms (Views: 0.1ms | ActiveRecord: 15.9ms | Allocations: 19562)
+
+
+Started POST "/api/question" for 127.0.0.1 at 2023-10-29 17:43:34 +0100
+Processing by Api::QuestionsController#answer_check as */*
+  Parameters: {"city-id"=>1, "answer"=>"Zagreb", "question"=>{}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:31:in `set_city'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2[0m  [["user_id", 3], ["city_id", 1]]
+  ↳ app/policies/city_policy.rb:4:in `question?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ivL99mMXPGrEUYvfbaCksDZb"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:8:in `answer_check'
+  [1m[36mUserCity Load (0.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1 AND "user_cities"."city_id" = $2 LIMIT $3[0m  [["user_id", 3], ["city_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:27:in `update_status'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/questions_controller.rb:27:in `update_status'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:27:in `update_status'
+  [1m[36mCACHE City Load (0.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/questions_controller.rb:27:in `update_status'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/questions_controller.rb:27:in `update_status'
+Completed 200 OK in 35ms (Views: 0.2ms | ActiveRecord: 10.5ms | Allocations: 17234)
+
+
