@@ -1853,3 +1853,398 @@ Processing by Api::SessionsController#destroy as */*
 Completed 204 No Content in 32ms (ActiveRecord: 19.9ms | Allocations: 12563)
 
 
+Started OPTIONS "/api/users/register" for ::1 at 2023-11-01 17:04:44 +0100
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started OPTIONS "/api/users/register" for ::1 at 2023-11-01 17:06:53 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started OPTIONS "/api/users/register" for ::1 at 2023-11-01 17:07:34 +0100
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started OPTIONS "/api/users/register" for ::1 at 2023-11-01 17:09:24 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started OPTIONS "/api/users/register" for 127.0.0.1 at 2023-11-01 17:12:31 +0100
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:12:56 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Petar", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Petar"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 274ms (Views: 3.6ms | ActiveRecord: 25.4ms | Allocations: 10871)
+
+
+Started POST "/api/users/register" for ::1 at 2023-11-01 17:13:12 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"aosudfhasuddfh", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "aosudfhasuddfh"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (5.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "aosudfhasuddfh"], ["password_digest", "$2a$12$zwYMBxD0D8Sjp0rAUeNVrOL1lfCD8eBL90Z.GxWh.NxJbLmBH9i2K"], ["token", "WsQfeCF9EXqkFXERusqKuTMQ"], ["created_at", "2023-11-01 16:13:12.403646"], ["updated_at", "2023-11-01 16:13:12.403646"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 277ms (Views: 0.1ms | ActiveRecord: 7.4ms | Allocations: 4133)
+
+
+Started POST "/api/users/register" for ::1 at 2023-11-01 17:13:33 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"aosudfhasadsuddfh", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "aosudfhasadsuddfh"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "aosudfhasadsuddfh"], ["password_digest", "$2a$12$r8ZtrOvKvNX.dR7c0UFCGOj4kiAs6vAnwLBW9Vg93lT0/lQZ6gXQ."], ["token", "e1Yst6Y9wbV1RNEfRqwXgK8G"], ["created_at", "2023-11-01 16:13:33.670131"], ["updated_at", "2023-11-01 16:13:33.670131"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 266ms (Views: 0.1ms | ActiveRecord: 4.1ms | Allocations: 3532)
+
+
+Started OPTIONS "/api/users/register" for 127.0.0.1 at 2023-11-01 17:14:22 +0100
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/users/register"):
+  
+Started OPTIONS "/api/session" for ::1 at 2023-11-01 17:16:12 +0100
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/session"):
+  
+Started OPTIONS "/api/session" for ::1 at 2023-11-01 17:16:57 +0100
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/api/session"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:19:33 +0100
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 17ms (Views: 2.9ms | ActiveRecord: 13.5ms | Allocations: 9956)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:19:35 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 12ms (Views: 0.7ms | ActiveRecord: 3.3ms | Allocations: 3344)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:19:37 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 10ms (Views: 0.6ms | ActiveRecord: 3.9ms | Allocations: 3337)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:20:24 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 76743ms (Views: 1.3ms | ActiveRecord: 18.6ms | Allocations: 33022)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:22:01 +0100
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:22:21 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:25:26 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 5990ms (Views: 6.3ms | ActiveRecord: 38.2ms | Allocations: 24366)
+
+
+Started GET "/main.639a8293e835c6cc393b.hot-update.json" for 127.0.0.1 at 2023-11-01 17:25:42 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/main.639a8293e835c6cc393b.hot-update.json"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:26:02 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:34:12 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:34:15 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 40742ms (Views: 1.0ms | ActiveRecord: 24.7ms | Allocations: 17980)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:34:55 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 1742ms (Views: 0.5ms | ActiveRecord: 2.6ms | Allocations: 12726)
+
+
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 66282ms (Views: 0.6ms | ActiveRecord: 2.9ms | Allocations: 51034)
+
+
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 400 Bad Request in 558967ms (Views: 0.5ms | ActiveRecord: 2.4ms | Allocations: 219624)
+
+
+Completed 500 Internal Server Error in 783290ms (ActiveRecord: 0.0ms | Allocations: 298017)
+
+
+Completed 500 Internal Server Error in 803601ms (ActiveRecord: 2.1ms | Allocations: 325041)
+
+
+  
+Errno::EIO (Input/output error @ io_write - <STDOUT>):
+  
+app/controllers/api/users_controller.rb:4:in `create'
+  
+Errno::EIO (Input/output error @ io_write - <STDOUT>):
+  
+app/controllers/api/users_controller.rb:4:in `create'
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:36:05 +0100
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 16ms (Views: 3.2ms | ActiveRecord: 9.7ms | Allocations: 9956)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:36:16 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 400 Bad Request in 19ms (Views: 0.5ms | ActiveRecord: 1.7ms | Allocations: 3344)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:37:16 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+[31mUnpermitted parameters: :password, :user[0m
+Completed 500 Internal Server Error in 55442ms (ActiveRecord: 2.5ms | Allocations: 44873)
+
+
+  
+NoMethodError (undefined method `permit' for "testing123":String):
+  
+app/controllers/api/users_controller.rb:16:in `user_params'
+app/controllers/api/users_controller.rb:5:in `create'
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:38:21 +0100
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testing123", "password"=>"[FILTERED]", "user"=>{"name"=>"testing123"}}
+[31mUnpermitted parameter: :user[0m
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testing123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "testing123"], ["password_digest", "$2a$12$g91UDtChqxAUeFbE3euGpuUsHoPt5at4T3ObXNFFIHnEjdX8Mgely"], ["token", "KTnP1KnV4hbZuBMBJsde7JrG"], ["created_at", "2023-11-01 16:38:27.791141"], ["updated_at", "2023-11-01 16:38:27.791141"]]
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:6:in `create'
+Completed 201 Created in 6342ms (Views: 0.2ms | ActiveRecord: 14.5ms | Allocations: 35036)
+
+
+Started GET "/main.1a3438f482897588f043.hot-update.json" for 127.0.0.1 at 2023-11-01 17:39:44 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/main.1a3438f482897588f043.hot-update.json"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:40:03 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testiranje2", "password"=>"[FILTERED]", "user"=>{"name"=>"testiranje2"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testiranje2"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "testiranje2"], ["password_digest", "$2a$12$VLWXzqqlLI5t6UcG4D03oOpC3Yf6ouCuLxaguFQB.ISohnMyPHmee"], ["token", "8Fpd3jTARcR95hvucjbComrM"], ["created_at", "2023-11-01 16:40:03.867363"], ["updated_at", "2023-11-01 16:40:03.867363"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 272ms (Views: 0.1ms | ActiveRecord: 12.8ms | Allocations: 6378)
+
+
+Started GET "/main.a1dcd94234801668063e.hot-update.json" for 127.0.0.1 at 2023-11-01 17:42:26 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/main.a1dcd94234801668063e.hot-update.json"):
+  
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:42:39 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"testiranje3", "password"=>"[FILTERED]", "user"=>{"name"=>"testiranje3"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "testiranje3"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "testiranje3"], ["password_digest", "$2a$12$s0ZuG04YabWcGNYz3zKTg.CryAYJUucZfSSiM55/.65RAZh3qHYrG"], ["token", "fJiB4Y9KRi9uuSNaVR7XynQy"], ["created_at", "2023-11-01 16:42:39.657245"], ["updated_at", "2023-11-01 16:42:39.657245"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 281ms (Views: 0.1ms | ActiveRecord: 4.3ms | Allocations: 3551)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:42:54 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"testiranje3", "password"=>"[FILTERED]", "session"=>{"name"=>"testiranje3", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testiranje3"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 280ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 1461)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:42:57 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"testiranje3", "password"=>"[FILTERED]", "session"=>{"name"=>"testiranje3", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testiranje3"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 284ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 944)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-01 17:43:33 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "user"=>{"name"=>"Erik123"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Erik123"], ["password_digest", "$2a$12$.A6cUQFFCRFmtWTmf94gZerPk8o5j/XnC39pARoKIBDLdRCkmVVd6"], ["token", "etQJrDdoWFK1oaz76TDoKBSv"], ["created_at", "2023-11-01 16:43:34.003786"], ["updated_at", "2023-11-01 16:43:34.003786"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 272ms (Views: 0.1ms | ActiveRecord: 3.1ms | Allocations: 3563)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:43:45 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 280ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 959)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:44:05 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:7:in `create'
+Completed 400 Bad Request in 67502ms (Views: 0.4ms | ActiveRecord: 9.7ms | Allocations: 24096)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:45:47 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 249ms (Views: 0.2ms | ActiveRecord: 6.0ms | Allocations: 8083)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:46:03 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:7:in `create'
+Completed 400 Bad Request in 11208ms (Views: 0.4ms | ActiveRecord: 8.2ms | Allocations: 32940)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:46:44 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:7:in `create'
+Completed 400 Bad Request in 12542ms (Views: 0.3ms | ActiveRecord: 10.6ms | Allocations: 34907)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:47:38 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:7:in `create'
+Completed 400 Bad Request in 163441ms (Views: 1.7ms | ActiveRecord: 36.2ms | Allocations: 32833)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-01 17:50:42 +0100
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"name"=>"Erik123", "password"=>"[FILTERED]", "session"=>{"name"=>"Erik123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Erik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:7:in `create'
+Completed 201 Created in 6627ms (Views: 0.3ms | ActiveRecord: 7.1ms | Allocations: 32729)
+
+
