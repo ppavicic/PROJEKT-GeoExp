@@ -1835,3 +1835,21 @@ Processing by Api::QuestionsController#answer_check as */*
 Completed 200 OK in 35ms (Views: 0.2ms | ActiveRecord: 10.5ms | Allocations: 17234)
 
 
+Started DELETE "/api/session" for 127.0.0.1 at 2023-10-29 18:31:34 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#destroy as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "nxJ2PhB21Uhv8Jfe98ELcG2F"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["name", "Petar"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Update (2.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "2spMimQvoHThzCW7vNLKQRBf"], ["updated_at", "2023-10-29 17:31:35.000547"], ["id", 4]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+Completed 204 No Content in 32ms (ActiveRecord: 19.9ms | Allocations: 12563)
+
+
