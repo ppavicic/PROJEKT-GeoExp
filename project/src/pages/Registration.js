@@ -4,50 +4,35 @@ import ReactDOM from "react-dom";
 import "../styles/Login.css";
 import user from '../Assets/person.png'
 import passwordimg from '../Assets/password.png'
+import { Navigate } from "react-router-dom";
+
 function Registration() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
+
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+    const user = { name, password }
+    console.log(name);
+    fetch("/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    }).then((res) => {
+      if (res.status !== 200) {
+        console.log(res);
       } else {
-        setIsSubmitted(true);
+        console.log("New Igrac added")
+        Navigate('/');
+
       }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    })
   };
 
   // Generate JSX code for error message
@@ -56,41 +41,41 @@ function Registration() {
       <div className="error">{errorMessages.message}</div>
     );
 
- 
+
 
   const renderForm1 = (
-    
+
     <div className="container">
-      <h className="title">Sign up</h>
+      <h1 className="title">Sign up</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <div className="input-text">Type your username</div>
           <div className="input-container">
             <img className="login-icons" src={user}></img>
-            <input type="text" placeholder="Type your username" name="uname" required />
-            {renderErrorMessage("uname")}
+            <input type="text" placeholder="Type your username" onChange={(e) => setName(e.target.value)} name="name" required />
+
           </div>
           <div className="input-text">Type your password</div>
           <div className="input-container">
             <img className="login-icons" src={passwordimg}></img>
             <input id="pass" type={
-                        showPassword ? "text" : "password"
-                    }
-                    value={password}
-                    onChange={(e) =>
-                        setPassword(e.target.value)
-                    } 
-                    placeholder="Type your password" name="pass" required />
+              showPassword ? "text" : "password"
+            }
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              placeholder="Type your password" name="password" required />
             {renderErrorMessage("pass")}
-            
+
           </div>
           <div>
             <input id="check"
-                    type="checkbox"
-                    value={showPassword}
-                    onChange={() =>
-                        setShowPassword((prev) => !prev)
-                    } />
+              type="checkbox"
+              value={showPassword}
+              onChange={() =>
+                setShowPassword((prev) => !prev)
+              } />
             <h className="show-pass-text">Show password</h>
           </div>
         </div>
@@ -99,18 +84,18 @@ function Registration() {
         </div>
       </form>
       <div className="signup-link-container">
-          <div className="show-pass-text">Already have account?</div>
-          <a  href="/">Login</a>
+        <div className="show-pass-text">Already have account?</div>
+        <a href="/">Login</a>
       </div>
-            
+
     </div>
-    
+
   );
 
   return (
     <div className="app">
       <div className="login-form">
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm1}
+        {renderForm1}
       </div>
     </div>
   );

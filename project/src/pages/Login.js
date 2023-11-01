@@ -4,50 +4,30 @@ import ReactDOM from "react-dom";
 import "../styles/Login.css";
 import user from '../Assets/person.png'
 import passwordimg from '../Assets/password.png'
+import { Navigate } from "react-router-dom";
 function Login() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+    const session = { name, password }
+    fetch("/api/session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(session)
+    }).then((res) => {
+      if (res.status !== 200) {
       } else {
-        setIsSubmitted(true);
+        Navigate('/home');
+
       }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    })
   };
 
   // Generate JSX code for error message
@@ -58,16 +38,15 @@ function Login() {
 
   // JSX code for login form
   const renderForm = (
-    
+
     <div className="container">
-      <h className="title">Login</h>
+      <h1 className="title">Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <div className="input-text">Username</div>
           <div className="input-container">
             <img className="login-icons" src={user}></img>
-            <input type="text" placeholder="Type your username" name="uname" required />
-            {renderErrorMessage("uname")}
+            <input type="text" placeholder="Type your username" name="name" required onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="input-text">Password</div>
           <div className="input-container">
@@ -81,13 +60,13 @@ function Login() {
         </div>
       </form>
       <div className="signup-link-container">
-          <div className="show-pass-text">Doesn't have account?</div>
-          <a  href="/registration">Create account</a>
+        <div className="show-pass-text">Doesn't have account?</div>
+        <a href="/registration">Create account</a>
       </div>
     </div>
   );
 
- 
+
 
   return (
     <div className="app">
