@@ -19,7 +19,7 @@ function Login() {
     fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(session),
+      body: JSON.stringify({ session }),
     }).then((res) => {
       if (res.status !== 201) {
       } else {
@@ -70,9 +70,7 @@ function Login() {
 
   return (
     <div className="app">
-      <div className="login-form">
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
+      <div className="login-form">{renderForm}</div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ function Registration() {
     fetch("/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
+      body: JSON.stringify({ user }),
     }).then((res) => {
       if (res.status !== 201) {
         console.log(res);
@@ -54,10 +54,10 @@ function Registration() {
               id="pass"
               type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
               placeholder="Type your password"
               name="password"
               required
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div>
