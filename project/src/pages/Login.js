@@ -23,7 +23,11 @@ function Login() {
     }).then((res) => {
       if (res.status !== 201) {
       } else {
-        navigate("/home");
+        res.json().then((data) => {
+          console.log("Response data:", data.session.token, data);
+          localStorage.setItem("token", data.session.token);
+          navigate("/home");
+        });
       }
     });
   };
