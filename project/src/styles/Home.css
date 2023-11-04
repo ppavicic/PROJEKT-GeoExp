@@ -16,3 +16,26 @@
    flex-direction: column;
 }
 
+.navbar {
+   display: flex;
+   justify-content: space-between;
+   background-color: grey; /* Background color of the navbar */
+   color: white; /* Text color for navbar items */
+   list-style-type: none;
+   padding: 10px;
+   margin: 0%;
+}
+
+.navbar-item {
+   margin: 0;
+   padding: 0;
+ }
+ 
+.username {
+   flex: 1; 
+   text-align: center;
+}
+ 
+.logoutbutton {
+   text-align: right;
+}

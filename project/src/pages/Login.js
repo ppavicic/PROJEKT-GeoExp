@@ -26,6 +26,7 @@ function Login() {
         res.json().then((data) => {
           console.log("Response data:", data.session.token, data);
           localStorage.setItem("token", data.session.token);
+          localStorage.setItem("user", data.session.user.name);
           navigate("/home");
         });
       }

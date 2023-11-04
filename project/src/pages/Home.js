@@ -3,12 +3,15 @@ import "../styles/Home.css";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 
 export const Home = () => {
+  const navigate = useNavigate();
   const [cities, setCities] = useState([]);
+  const [userName, setUsername] = useState("");
 
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -40,6 +43,9 @@ export const Home = () => {
   useEffect(() => {
     //request za dohvat gradova od usera
     const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("user");
+    setUsername(userName);
+
     fetch("/api/user/cities", {
       method: "GET",
       headers: {
@@ -55,10 +61,41 @@ export const Home = () => {
     });
   }, []);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+
+    fetch("/api/session", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    }).then((res) => {
+        if (res.status === 204) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          navigate("/");
+        } else {
+          console.error("Error");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting session:", error);
+      });
+  };
+
   console.log("Cities --> ");
   console.log(cities.data);
   if (cities.data !== undefined) {
     return (
+      <div>
+      <ul className="navbar">
+          <li className="navbar-item username">{userName}</li>
+          <li className="navbar-item logoutbutton">
+            <button onClick={handleSubmit}>ODJAVA</button>
+          </li>
+      </ul>
       <div className="map-container">
         <MapContainer
           center={initialCenter}
@@ -83,6 +120,7 @@ export const Home = () => {
             </Marker>
           ))}
         </MapContainer>
+      </div>
       </div>
     );
   }
