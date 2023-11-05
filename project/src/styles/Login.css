@@ -1,146 +1,141 @@
 .app {
-    font-family: sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    height: 100vh;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-  
-    height: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }
-  
-  input[type="submit"] {
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-    border: 1px solid black;
-    color: #fff;
-    padding: 10px 20px;
-  }
-  
-  input[type="submit"]:hover {
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-    
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    background-color: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-  }
-  
-  .signup-link-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;  
-    margin-top: 10px;
-  }
-  .container{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    padding-bottom: 30px;
-  }
-  
-  .inputs{
-    margin-top: 35px;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  .login-form {
-    background-color: white;
-    padding: 2rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .list-container {
-    display: flex;
-  }
-  
-  .error {
-    color: red;
-    font-size: 12px;
-  }
-  
-  .title {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    font-size: 40px;
-    
-    margin-top: 10px;
-  }
-  
-  .input-container {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 400px;
-    height: 45px;
-    background: #eaeaee;
-    border-radius: 6px;
-    
-  
-  }
-  
-  .input img{
-    margin: 0px 30px;
-  }
-  
-  .input-container input{
-    height: 50px;
-    width: 400px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #797979;
-    font-size: 15px;
-  }
-  
-  .login-icons{
-    margin-left: 15px;
-    margin-right: 20px;
-  }
-  
-  .button{
-    
-    cursor: pointer;
-    font-size: 15px;
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-    border: 1px solid black;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 6px;
-    
-  }
-  
-  .input-text{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 20px;
-    color: grey;
-    margin-bottom: 5px;
-    margin-top: 20px;
-  }
-  
-  .show-pass-text{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 15px;
-    color: grey;
-  }
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 20px;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+  border: 1px solid black;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  background-color: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+}
+
+.signup-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding-bottom: 30px;
+}
+
+.inputs {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+}
+.login-form {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.title {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 40px;
+
+  margin-top: 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+  height: 45px;
+  background: #eaeaee;
+  border-radius: 6px;
+}
+
+.input img {
+  margin: 0px 30px;
+}
+
+.input-container input {
+  height: 50px;
+  width: 400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 15px;
+}
+
+.login-icons {
+  margin-left: 15px;
+  margin-right: 20px;
+}
+
+.button {
+  cursor: pointer;
+  font-size: 15px;
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+  border: 1px solid black;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.input-text {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  color: grey;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.show-pass-text {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 15px;
+  color: grey;
+}
