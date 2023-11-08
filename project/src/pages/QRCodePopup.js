@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 import '../styles/Popup.css';
+import { useNavigate } from "react-router-dom";
 
 function generateRandomPIN(length) {
   const digits = '0123456789';
@@ -16,6 +17,7 @@ function generateRandomPIN(length) {
 }
 
 export const QRCodePopup = ({ cityInfo }) => {
+  const navigate = useNavigate();
   const [enteredPIN, setEnteredPin] = useState('');
   const [pin, setPIN] = useState('');
 
@@ -43,6 +45,7 @@ export const QRCodePopup = ({ cityInfo }) => {
   const handleSubmit = () => {    //ovdje treba navigirat na pitanje ako je pin tocan
     if (enteredPIN === pin) {
       console.log('Correct PIN: true');
+      navigate("/question")
     } else {
       console.log('Correct PIN: false');
     }
