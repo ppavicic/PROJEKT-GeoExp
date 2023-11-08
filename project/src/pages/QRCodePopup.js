@@ -45,7 +45,7 @@ export const QRCodePopup = ({ cityInfo }) => {
   const handleSubmit = () => {    //ovdje treba navigirat na pitanje ako je pin tocan
     if (enteredPIN === pin) {
       console.log('Correct PIN: true');
-      navigate("/question", { state: { cityInfo } });
+      navigate(`/question?cityName=${cityInfo.name}`);
     } else {
       console.log('Correct PIN: false');
     }
