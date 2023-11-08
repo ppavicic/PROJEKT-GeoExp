@@ -13,19 +13,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} exact />
         <Route path="/question" element={
-          <PrivateRoutes>
-            <Question />
-          </PrivateRoutes>}
+          //<PrivateRoutes>
+          <Question />}
+          // </PrivateRoutes>}
           exact />
         <Route path="/registration" element={<Registration />} exact />
         <Route path="/home" element={
-          <PrivateRoutes>
-            <Home />
-          </PrivateRoutes>} exact />
+          // <PrivateRoutes>
+          <Home />}
+          //  </PrivateRoutes>} 
+          exact />
         <Route path="/cityInfo" element={
-          <PrivateRoutes>
-            <CityInfo />
-          </PrivateRoutes>} exact />
+          // <PrivateRoutes>
+          <CityInfo />}
+          // </PrivateRoutes>} 
+          exact />
       </Routes>
     </div>
   );

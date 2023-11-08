@@ -12,7 +12,7 @@ function generateRandomPIN(length) {
   }
 
   return pin;
-  
+
 }
 
 export const QRCodePopup = ({ cityInfo }) => {
@@ -29,11 +29,11 @@ export const QRCodePopup = ({ cityInfo }) => {
 
   const queryParams = new URLSearchParams();
   queryParams.append('cityName', cityInfo.name);
-  queryParams.append('cityDescription', cityInfo.description);
+  // queryParams.append('cityDescription', cityInfo.description);
   queryParams.append('pin', encodedPin);
 
   const cityInfoUrl = 'http://localhost:3000/cityinfo';   //promijenit URL 
-  
+
   const qrCodeData = `${cityInfoUrl}?${queryParams.toString()}`;
 
   const handlePinChange = (event) => {
@@ -52,7 +52,7 @@ export const QRCodePopup = ({ cityInfo }) => {
     <div>
       <QRCode value={qrCodeData} size={160} />
       <p>Scan the QR code for info about the city</p>
-      <input type="text" value={enteredPIN} onChange={handlePinChange} placeholder="Enter PIN"/>
+      <input type="text" value={enteredPIN} onChange={handlePinChange} placeholder="Enter PIN" />
       <button onClick={handleSubmit}>Otvori pitanje</button>
     </div>
   );
