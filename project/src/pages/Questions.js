@@ -3,18 +3,26 @@ import ReactDOM from "react-dom";
 import "../styles/Question.css";
 import { useNavigate } from "react-router-dom";
 
-function Question() {
+function Question({ cityInfo }) {
   const [value, setAnswer] = useState('');
+  const cityName = cityInfo['cityName'];
+  console.log(cityName);
+
 
 
   const handleClick = (event) => {
+    const token = localStorage.getItem("token");
     event.preventDefault();
     const answer = event.target.value;
     setAnswer(answer);
     console.log(answer);
-    fetch("/api/session", {
+
+    fetch("/api/question/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
       body: JSON.stringify({ answer }),
     }).then((res) => {
       if (res.status !== 201) {
