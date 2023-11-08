@@ -14,7 +14,7 @@ module Api
     private
 
     def set_city
-      @city = City.find(city_id)
+      @city = City.find_by(name: city_query_name)
       authorize @city, :question?
     end
 
@@ -26,12 +26,12 @@ module Api
       City.find_by(name: city_name).description
     end
 
-    def city_name
-      params['city-name']
+    def city_query_name
+      params['cityName']
     end
 
-    def city_id
-      params['city-id']
+    def city_name
+      params['city-name']
     end
   end
 end
