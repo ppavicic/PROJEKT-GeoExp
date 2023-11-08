@@ -17,11 +17,28 @@ export const CityInfo = () => {
     const [cityDescription, setCityDescription] = useState('');
 
     useEffect(() => {
-        fetch('/api/city/description?city-name=' + cityName)
-            .then(response => response.json())
-            .then(data => setCityDescription(data.description))
-            .catch(error => console.error('Greška:', error));
-        console.log(cityDescription);
+        const token = localStorage.getItem("token");
+
+        fetch(`/api/city/description?city-name=${cityName}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `${token}`,
+            },
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then((data) => {
+                setCityDescription(data.description);
+            })
+            .catch((error) => {
+                console.error('Greška:', error);
+            });
+
     }, [cityName]);
 
     const generateRandomPin = () => {
