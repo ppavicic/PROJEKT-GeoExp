@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../styles/Question.css";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,9 @@ function Question() {
     setAnswer(answer);
     console.log(answer);
 
+  };
+
+  useEffect(() => {
     fetch("/api/question/", {
       method: "POST",
       headers: {
@@ -36,7 +39,7 @@ function Question() {
         });
       }
     });
-  };
+  })
 
   const questionForm = (
     <div className="container">
