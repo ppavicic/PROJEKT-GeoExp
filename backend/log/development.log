@@ -2503,3 +2503,431 @@ Processing by Api::SessionsController#create as */*
 Completed 201 Created in 8335ms (Views: 0.3ms | ActiveRecord: 11.4ms | Allocations: 34637)
 
 
+Started POST "/api/session" for 127.0.0.1 at 2023-11-05 10:58:23 +0100
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 256ms (Views: 0.2ms | ActiveRecord: 10.7ms | Allocations: 8449)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-05 10:58:24 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "HE8deB8kMqhbLpK4zCAy32qJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "HE8deB8kMqhbLpK4zCAy32qJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (9.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (2.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 41ms (Views: 0.1ms | ActiveRecord: 21.9ms | Allocations: 17107)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-05 10:58:30 +0100
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "HE8deB8kMqhbLpK4zCAy32qJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "HE8deB8kMqhbLpK4zCAy32qJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["name", "testing"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Update (2.5ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "6kEfL5vtkH2zyXQtwafoJWQG"], ["updated_at", "2023-11-05 09:58:30.945131"], ["id", 16]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+Completed 204 No Content in 28ms (ActiveRecord: 12.5ms | Allocations: 5422)
+
+
+Started GET "/main.65c859fcd5aa2f3c339f.hot-update.json" for 127.0.0.1 at 2023-11-05 15:37:47 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/main.65c859fcd5aa2f3c339f.hot-update.json"):
+  
+Started POST "/api/session" for 127.0.0.1 at 2023-11-05 15:55:04 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 262ms (Views: 0.2ms | ActiveRecord: 15.8ms | Allocations: 8449)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-05 15:55:05 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "6kEfL5vtkH2zyXQtwafoJWQG"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "6kEfL5vtkH2zyXQtwafoJWQG"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 37ms (Views: 0.1ms | ActiveRecord: 11.8ms | Allocations: 17126)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-05 15:55:11 +0100
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "6kEfL5vtkH2zyXQtwafoJWQG"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "6kEfL5vtkH2zyXQtwafoJWQG"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["name", "testing"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Update (3.4ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["updated_at", "2023-11-05 14:55:11.923645"], ["id", 16]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+Completed 204 No Content in 36ms (ActiveRecord: 16.9ms | Allocations: 5426)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 10:12:03 +0100
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 258ms (Views: 0.3ms | ActiveRecord: 11.0ms | Allocations: 8452)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-06 10:12:03 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (8.7ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 39ms (Views: 0.1ms | ActiveRecord: 18.7ms | Allocations: 17107)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 10:15:13 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"answer"=>"question 1", "session"=>{"answer"=>"question 1"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 9ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 1110)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 10:15:14 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"answer"=>"question 2", "session"=>{"answer"=>"question 2"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 8ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 1073)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 10:15:14 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"answer"=>"question 3", "session"=>{"answer"=>"question 3"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 6ms (Views: 0.4ms | ActiveRecord: 1.1ms | Allocations: 1058)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 10:15:15 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"answer"=>"question 4", "session"=>{"answer"=>"question 4"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 7ms (Views: 0.4ms | ActiveRecord: 1.8ms | Allocations: 1058)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-06 10:15:17 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.2ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 6.0ms | Allocations: 3776)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-06 10:16:52 +0100
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "oENu6wWyxvH5Mx9eEHYZJbCJ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["name", "testing"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Update (3.0ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "odNXzMWxGk9xBpqc5sVtxu4P"], ["updated_at", "2023-11-06 09:16:52.586845"], ["id", 16]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+Completed 204 No Content in 43ms (ActiveRecord: 14.0ms | Allocations: 5402)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-06 15:33:53 +0100
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 256ms (Views: 0.2ms | ActiveRecord: 11.6ms | Allocations: 8449)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-06 15:33:54 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "odNXzMWxGk9xBpqc5sVtxu4P"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "odNXzMWxGk9xBpqc5sVtxu4P"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (0.8ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 31ms (Views: 0.1ms | ActiveRecord: 10.5ms | Allocations: 17107)
+
+
+Started DELETE "/api/session" for 127.0.0.1 at 2023-11-06 15:35:22 +0100
+Processing by Api::SessionsController#destroy as */*
+  Parameters: {"session"=>{}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "odNXzMWxGk9xBpqc5sVtxu4P"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "odNXzMWxGk9xBpqc5sVtxu4P"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["name", "testing"], ["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mUser Update (3.1ms)[0m  [1m[33mUPDATE "users" SET "token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["updated_at", "2023-11-06 14:35:22.517253"], ["id", 16]]
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/sessions_controller.rb:15:in `destroy'
+Completed 204 No Content in 45ms (ActiveRecord: 14.9ms | Allocations: 5422)
+
+
+Started POST "/api/users/register" for 127.0.0.1 at 2023-11-06 15:35:47 +0100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"dominik123", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER($1) LIMIT $2[0m  [["name", "dominik123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dominik123"], ["password_digest", "$2a$12$tDeR7kadP9sS08wa8FNRY.3fLJt0zmSDwUghogXfrS3cuXPbZSeCO"], ["token", "EquibzgurYBdupJW2sJVYtmq"], ["created_at", "2023-11-06 14:35:47.667332"], ["updated_at", "2023-11-06 14:35:47.667332"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 283ms (Views: 0.1ms | ActiveRecord: 5.8ms | Allocations: 3844)
+
+
+  [1m[36mCity Load (2.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+  [1m[36mCity Load (1.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+Started GET "/api/city/description?city-name=Zagreb" for 127.0.0.1 at 2023-11-08 18:02:04 +0100
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/city/description"):
+  
+Started POST "/api/city/description?city-name=Zagreb" for 127.0.0.1 at 2023-11-08 18:02:13 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Zagreb"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 415)
+
+
+Started POST "/api/city/description?city-name=Zagreb" for 127.0.0.1 at 2023-11-08 18:02:43 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Zagreb"}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "EquibzgurYBdupJW2sJVYtmq"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 10.0ms | Allocations: 10615)
+
+
+  
+NameError (undefined local variable or method `get_description' for #<Api::CitiesController:0x00000000006ce8>
+Did you mean?  city_description):
+  
+app/controllers/api/cities_controller.rb:11:in `description'
+Started POST "/api/city/description?city-name=Zagreb" for 127.0.0.1 at 2023-11-08 18:02:58 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Zagreb"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "EquibzgurYBdupJW2sJVYtmq"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:26:in `city_description'
+Completed 200 OK in 27ms (Views: 0.2ms | ActiveRecord: 13.1ms | Allocations: 12114)
+
+
+Started GET "/api/city/description?city-name=Zagreb" for 127.0.0.1 at 2023-11-08 18:03:21 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Zagreb"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "EquibzgurYBdupJW2sJVYtmq"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Zagreb"], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:26:in `city_description'
+Completed 200 OK in 25ms (Views: 0.2ms | ActiveRecord: 10.2ms | Allocations: 11510)
+
+
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  [1m[36mCity Create (8.1ms)[0m  [1m[32mINSERT INTO "cities" ("name", "description", "longitude", "latitude", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rijeka"], ["description", "Rijeka je velika hrvatska luka na sjevernom Jadranu.\n\n     Smještena je u Kvarnerskom zaljevu i ima važnu povijest kao industrijsko središte. Grad se nalazi na ušću rijeke Rječine.\n\n     U Rijeci je umjereno toplo, s prosječnom temperaturom od oko 14 stupnjeva Celzijusa. Tu i tamo puše jaka bura.\n \n     Grad ima svoju zastavu koja je plava s žutim rubom i grbom u sredini. Povijesni grb prikazuje crnog orla s dvije glave i druge simbole.\n\n    Rijeka ima bogatu povijest koja seže unatrag tisućama godina, a Rimljani su ovdje izgradili važnu vojnu utvrdu. Danas je Rijeka važno gospodarsko i kulturno središte."], ["longitude", 14.4092], ["latitude", 45.3431], ["created_at", "2023-11-08 17:12:18.567538"], ["updated_at", "2023-11-08 17:12:18.567538"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCity Load (6.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE (Rijeka) LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCity Load (1.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "cities" WHERE "cities"."name" = $1 AND "cities"."id" != $2 LIMIT $3[0m  [["name", "Rijeka"], ["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Update (4.9ms)[0m  [1m[33mUPDATE "cities" SET "description" = $1, "updated_at" = $2 WHERE "cities"."id" = $3[0m  [["description", "Rijeka je velika hrvatska luka na sjevernom Jadranu.\n     Smještena je u Kvarnerskom zaljevu i ima važnu povijest kao industrijsko središte. Grad se nalazi na ušću rijeke Rječine.\n     U Rijeci je umjereno toplo, s prosječnom temperaturom od oko 14 stupnjeva Celzijusa. Tu i tamo puše jaka bura.\n     Grad ima svoju zastavu koja je plava s žutim rubom i grbom u sredini. Povijesni grb prikazuje crnog orla s dvije glave i druge simbole.\n    Rijeka ima bogatu povijest koja seže unatrag tisućama godina, a Rimljani su ovdje izgradili važnu vojnu utvrdu. Danas je Rijeka važno gospodarsko i kulturno središte."], ["updated_at", "2023-11-08 17:13:39.700241"], ["id", 3]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCity Load (0.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUserCity Create (5.3ms)[0m  [1m[32mINSERT INTO "user_cities" ("user_id", "city_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 16], ["city_id", 3], ["status", "active"], ["created_at", "2023-11-08 17:16:21.260442"], ["updated_at", "2023-11-08 17:16:21.260442"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mCity Load (3.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" INNER JOIN "user_cities" ON "cities"."id" = "user_cities"."city_id" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Load (1.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (3.3ms)[0m  [1m[32mINSERT INTO "questions" ("text", "correct_answer", "offered_answers", "city_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["text", "Koja rijeka teče kroz grad Rijeku?"], ["correct_answer", "Rječina"], ["offered_answers", "Dunav;Sava;Rječina;Drava"], ["city_id", 3], ["created_at", "2023-11-08 17:19:08.117012"], ["updated_at", "2023-11-08 17:19:08.117012"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."city_id" = $1 LIMIT $2[0m  [["city_id", 3], ["LIMIT", 1]]
+Started POST "/api/session" for 127.0.0.1 at 2023-11-08 18:21:38 +0100
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 257ms (Views: 0.2ms | ActiveRecord: 10.9ms | Allocations: 8449)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-08 18:21:38 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.0ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (11.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 41ms (Views: 0.1ms | ActiveRecord: 19.6ms | Allocations: 18002)
+
+
+Started GET "/api/city/description?city-name=Rijeka" for 127.0.0.1 at 2023-11-08 18:22:28 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Rijeka"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 285)
+
+
+Started GET "/api/city/description?city-name=Rijeka" for 127.0.0.1 at 2023-11-08 18:23:48 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Rijeka"}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 185)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-11-08 18:30:45 +0100
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"testing", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 201 Created in 470ms (Views: 0.2ms | ActiveRecord: 35.8ms | Allocations: 6066)
+
+
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-08 18:30:46 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.1ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (7.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 24ms (Views: 0.1ms | ActiveRecord: 9.8ms | Allocations: 4739)
+
+
+Started GET "/main.73bdd9e22d7414371c88.hot-update.json" for 127.0.0.1 at 2023-11-08 18:31:32 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/main.73bdd9e22d7414371c88.hot-update.json"):
+  
+Started GET "/main.73bdd9e22d7414371c88.hot-update.json" for 127.0.0.1 at 2023-11-08 18:31:32 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/main.73bdd9e22d7414371c88.hot-update.json"):
+  
+Started GET "/api/user/cities" for 127.0.0.1 at 2023-11-08 18:31:32 +0100
+Processing by Api::UserCitiesController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mUserCity Load (1.4ms)[0m  [1m[34mSELECT "user_cities".* FROM "user_cities" WHERE "user_cities"."user_id" = $1[0m  [["user_id", 16]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.0ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+  [1m[36mCity Load (1.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/user_cities_controller.rb:7:in `index'
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 6.2ms | Allocations: 4650)
+
+
+Started GET "/api/city/description?city-name=Rijeka" for 127.0.0.1 at 2023-11-08 18:31:32 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Rijeka", "city"=>{}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:26:in `city_description'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.7ms | Allocations: 1633)
+
+
+Started GET "/api/city/description?city-name=Rijeka" for 127.0.0.1 at 2023-11-08 18:31:37 +0100
+Processing by Api::CitiesController#description as */*
+  Parameters: {"city-name"=>"Rijeka", "city"=>{}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."token" = $1 LIMIT $2[0m  [["token", "ucMmceHm2oCaWv3HXxnS6ypE"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+  [1m[36mCity Load (1.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Rijeka"], ["LIMIT", 1]]
+  ↳ app/controllers/api/cities_controller.rb:26:in `city_description'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.7ms | Allocations: 1483)
+
+

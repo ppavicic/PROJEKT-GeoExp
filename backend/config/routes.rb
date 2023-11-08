@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post '/users/register', to: 'users#create'
     post '/session', to: 'sessions#create'
     delete '/session', to: 'sessions#destroy'
+    get '/city/description', to: 'cities#description'
   end
 end

@@ -7,6 +7,10 @@ module Api
       render json: QuestionSerializer.render(city_question, root: :question)
     end
 
+    def description
+      render json: { description: city_description }
+    end
+
     private
 
     def set_city
@@ -16,6 +20,14 @@ module Api
 
     def city_question
       @city&.question
+    end
+
+    def city_description
+      City.find_by(name: city_name).description
+    end
+
+    def city_name
+      params['city-name']
     end
 
     def city_id
