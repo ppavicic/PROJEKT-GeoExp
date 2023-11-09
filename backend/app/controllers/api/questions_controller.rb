@@ -16,15 +16,28 @@ module Api
 
     def correct_answer
       update_status
-      render json: { data: { info: 'Correct answer!' } }, status: :ok
     end
 
     def wrong_answer
       render json: { data: { info: 'Wrong answer! Please try again.' } }, status: :ok
     end
 
+    # potrebno je uzeti neki random grad od korisnika koji posjeduje i njemu promjeniti status
+    # prije odabira grada napravit shuffle
     def update_status
-      @user_cities.find_by(city_id: city_id).update(status: 'active')
+      city = inactive_city
+      return all_done if cities.empty?
+
+      city.update(status: 'active')
+      render json: { data: { info: `Congratulations! You unlocked #{city.name}` } }, status: :ok
+    end
+
+    def all_done
+      render json: { data: { info: 'Congratulations! You unlocked all cities!' } }, status: :ok
+    end
+
+    def inactive_city
+      @user_cities.where(status: 'inactive').sample
     end
 
     def set_city
