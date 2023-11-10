@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Alert } from 'react-bootstrap'
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 

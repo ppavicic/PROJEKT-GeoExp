@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "../styles/Question.css";
 import { redirect, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Alert } from 'react-bootstrap'
 
 // function shuffleArray(array) {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -54,18 +55,19 @@ function Question() {
       body: JSON.stringify({ requestBody }),
     }).then((res) => {
       if (res.status !== 200) {
-        setPopupMsg(data.info);
-        settaskError(true);
       } else {
         res.json().then((data) => {
           console.log("Response data:", data.info);
           localStorage.setItem("quizToken", data.info);
           setPopupMsg(data.info);
-          setTaskSuccess(true);
-
-          setTimeout(() => {
-            navigate("/home");
-          }, 4000);
+          if(data.info === "Wrong answer! Please try again."){
+            settaskError(true);
+          }else{
+            setTaskSuccess(true);
+            setTimeout(() => {
+              navigate("/home");
+            }, 4000);
+          }
         });
       }
     });
