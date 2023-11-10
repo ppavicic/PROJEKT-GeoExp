@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../styles/Question.css";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Alert } from "react-bootstrap";
-import { type } from "@testing-library/user-event/dist/type";
 
 // function shuffleArray(array) {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -24,9 +22,6 @@ function Question() {
 
   const [value, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
-  const [popupMsg, setPopupMsg] = useState("");
-  const [taskSucces, setTaskSuccess] = useState(false);
-  const [taskError, settaskError] = useState(false);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -60,17 +55,9 @@ function Question() {
         res.json().then((data) => {
           console.log("Response data:", data.info);
           localStorage.setItem("quizToken", data.info);
-          setPopupMsg(data.info);
-          console.log(
-            "DATA INFO --------------------------------------------------------------------------------"
-          );
-          console.log(data.info);
-          console.log(typeof data.info);
           if (data.info === "Wrong answer! Please try again.") {
-            console.log("IF GRANA");
             window.alert(data.info);
           } else {
-            console.log("ELSE GRANA");
             navigate("/home");
           }
         });

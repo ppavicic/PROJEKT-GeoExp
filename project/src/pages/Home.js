@@ -4,7 +4,6 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "react-bootstrap";
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 
@@ -12,8 +11,6 @@ export const Home = () => {
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
-  const [popupMsg, setPopupMsg] = useState("");
-  const [msgShow, setMsgShow] = useState(false);
 
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -48,7 +45,6 @@ export const Home = () => {
     const userName = localStorage.getItem("user");
     setUsername(userName);
 
-    console.log("USE EFFECT");
     fetch("/api/user/cities", {
       method: "GET",
       headers: {
@@ -62,17 +58,9 @@ export const Home = () => {
         });
       }
     });
+
     const quizToken = localStorage.getItem("quizToken");
     if (quizToken) {
-      //const areAllCitiesActive = cities.data.every(
-      //  (cityData) => cityData.status === "active"
-      //);
-      /*if (areAllCitiesActive) {
-        console.log("All cities are active.");
-      } else {
-        console.log("Not all cities are active.");
-        console.log(quizToken);
-      }*/
       setTimeout(() => {
         window.alert(quizToken);
       }, 300);
