@@ -22,6 +22,9 @@ function Question() {
 
   const [value, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
+  const [popupMsg, setPopupMsg] = useState("");
+  const [taskSucces, setTaskSuccess] = useState(false);
+  const [taskError, settaskError] = useState(false);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -51,11 +54,18 @@ function Question() {
       body: JSON.stringify({ requestBody }),
     }).then((res) => {
       if (res.status !== 200) {
+        setPopupMsg(data.info);
+        settaskError(true);
       } else {
         res.json().then((data) => {
           console.log("Response data:", data.info);
           localStorage.setItem("quizToken", data.info);
-          navigate("/home");
+          setPopupMsg(data.info);
+          setTaskSuccess(true);
+
+          setTimeout(() => {
+            navigate("/home");
+          }, 4000);
         });
       }
     });
@@ -132,6 +142,10 @@ function Question() {
   return (
     <div className="app">
       <div className="login-form">{questionForm}</div>
+      {taskSucces && 
+        <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'success'}>{popupMsg}</Alert></div>}
+      {taskError &&
+        <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
     </div>
   );
 }

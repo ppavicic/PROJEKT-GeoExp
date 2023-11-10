@@ -12,6 +12,8 @@ export const Home = () => {
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
+  const [popupMsg, setPopupMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
 
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -23,13 +25,6 @@ export const Home = () => {
     [90, 180], // Northeast coordinates (latitude, longitude)
   ];
 
-  const blueIcon = new LeafIcon({
-    iconUrl:
-      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7Cabcdef&chf=a,s,ee00FFFF",
-    iconSize: [25, 30],
-    iconAnchor: [12.5, 30],
-  });
-
   const greenIcon = new LeafIcon({
     iconUrl:
       "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C2ecc71&chf=a,s,ee00FFFF",
@@ -37,8 +32,15 @@ export const Home = () => {
     iconAnchor: [12.5, 30],
   });
 
-  const [activeIcon, setActiveIcon] = useState(blueIcon);
-  const [inactiveIcon, setInactiveIcon] = useState(greenIcon);
+  const redIcon = new LeafIcon({
+    iconUrl:
+      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7Cff0000&chf=a,s,ee00FFFF",
+    iconSize: [25, 30],
+    iconAnchor: [12.5, 30],
+  });
+
+  const [activeIcon, setActiveIcon] = useState(greenIcon);
+  const [inactiveIcon, setInactiveIcon] = useState(redIcon);
 
   useEffect(() => {
     //request za dohvat gradova od usera
@@ -91,19 +93,21 @@ export const Home = () => {
   if (cities.data !== undefined) {
     const quizToken = localStorage.getItem("quizToken");
     if (quizToken) {
-      const areAllCitiesActive = cities.data.every(
-        (cityData) => cityData.status === "active"
-      );
-      if (areAllCitiesActive) {
+      //const areAllCitiesActive = cities.data.every(
+      //  (cityData) => cityData.status === "active"
+      //);
+      setPopupMsg(quizToken);
+      setMsgShow(true);
+      /*if (areAllCitiesActive) {
         console.log("All cities are active.");
       } else {
         console.log("Not all cities are active.");
         console.log(quizToken);
-      }
-      // setTimeout(() => {
-      //   localStorage.removeItem('quizToken');
-      //   console.log('Token removed after 2-3 seconds.');
-      // }, 3000);
+      }*/
+      setTimeout(() => {
+        localStorage.removeItem('quizToken');
+        setMsgShow(false);
+      }, 3000);
     }
 
     return (
@@ -138,6 +142,8 @@ export const Home = () => {
               </Marker>
             ))}
           </MapContainer>
+          {msgShow &&
+            <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
         </div>
       </div>
     );
