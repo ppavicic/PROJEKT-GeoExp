@@ -19,21 +19,33 @@ module Api
     end
 
     def wrong_answer
-      render json: { data: { info: 'Wrong answer! Please try again.' } }, status: :ok
+      render json: { info: 'Wrong answer! Please try again.' }, status: :ok
     end
 
-    # potrebno je uzeti neki random grad od korisnika koji posjeduje i njemu promjeniti status
-    # prije odabira grada napravit shuffle
     def update_status
-      city = inactive_city
-      return all_done if cities.empty?
+      return answered_question unless updatable?
 
+      city = inactive_city
+      return all_done if city.nil?
+
+      @user_cities.where(city_id: city_id).first.update(answered: 'true')
       city.update(status: 'active')
-      render json: { data: { info: `Congratulations! You unlocked #{city.name}` } }, status: :ok
+      render json: { info: "Congratulations! You unlocked #{city.city.name}" },
+             status: :ok
+    end
+
+    def updatable?
+      return true if @user_cities.where(city_id: city_id).first.answered.eql?('false')
+
+      false
     end
 
     def all_done
-      render json: { data: { info: 'Congratulations! You unlocked all cities!' } }, status: :ok
+      render json: { info: 'Congratulations! You unlocked all cities!' }, status: :ok
+    end
+
+    def answered_question
+      render json: { info: 'Congratulations! Your answer is correct!' }
     end
 
     def inactive_city
@@ -50,11 +62,11 @@ module Api
     end
 
     def city_id
-      params['city-id']
+      params['requestBody']['city-id']
     end
 
     def user_answer
-      params['answer']
+      params['requestBody']['answer']
     end
   end
 end
