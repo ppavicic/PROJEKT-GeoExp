@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from 'react-bootstrap'
+import { Alert } from "react-bootstrap";
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 
@@ -42,12 +42,13 @@ export const Home = () => {
   const [activeIcon, setActiveIcon] = useState(greenIcon);
   const [inactiveIcon, setInactiveIcon] = useState(redIcon);
 
+  const token = localStorage.getItem("token");
   useEffect(() => {
     //request za dohvat gradova od usera
-    const token = localStorage.getItem("token");
     const userName = localStorage.getItem("user");
     setUsername(userName);
 
+    console.log("USE EFFECT");
     fetch("/api/user/cities", {
       method: "GET",
       headers: {
@@ -61,6 +62,22 @@ export const Home = () => {
         });
       }
     });
+    const quizToken = localStorage.getItem("quizToken");
+    if (quizToken) {
+      //const areAllCitiesActive = cities.data.every(
+      //  (cityData) => cityData.status === "active"
+      //);
+      /*if (areAllCitiesActive) {
+        console.log("All cities are active.");
+      } else {
+        console.log("Not all cities are active.");
+        console.log(quizToken);
+      }*/
+      setTimeout(() => {
+        window.alert(quizToken);
+      }, 300);
+      localStorage.removeItem("quizToken");
+    }
   }, []);
 
   const handleSubmit = (event) => {
@@ -91,25 +108,6 @@ export const Home = () => {
   console.log("Cities --> ");
   console.log(cities.data);
   if (cities.data !== undefined) {
-    const quizToken = localStorage.getItem("quizToken");
-    if (quizToken) {
-      //const areAllCitiesActive = cities.data.every(
-      //  (cityData) => cityData.status === "active"
-      //);
-      setPopupMsg(quizToken);
-      setMsgShow(true);
-      /*if (areAllCitiesActive) {
-        console.log("All cities are active.");
-      } else {
-        console.log("Not all cities are active.");
-        console.log(quizToken);
-      }*/
-      setTimeout(() => {
-        localStorage.removeItem('quizToken');
-        setMsgShow(false);
-      }, 3000);
-    }
-
     return (
       <div>
         <ul className="navbar">
@@ -142,8 +140,6 @@ export const Home = () => {
               </Marker>
             ))}
           </MapContainer>
-          {msgShow &&
-            <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
         </div>
       </div>
     );
