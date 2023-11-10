@@ -71,10 +71,11 @@ export const Home = () => {
         "Content-Type": "application/json",
         Authorization: `${token}`,
       },
-    }).then((res) => {
+    })
+      .then((res) => {
         if (res.status === 204) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
           navigate("/");
         } else {
           console.error("Error");
@@ -88,54 +89,56 @@ export const Home = () => {
   console.log("Cities --> ");
   console.log(cities.data);
   if (cities.data !== undefined) {
-    const quizToken = localStorage.getItem('quizToken'); 
-    if(quizToken){
-      const areAllCitiesActive = cities.data.every(cityData => cityData.status === 'active');
+    const quizToken = localStorage.getItem("quizToken");
+    if (quizToken) {
+      const areAllCitiesActive = cities.data.every(
+        (cityData) => cityData.status === "active"
+      );
       if (areAllCitiesActive) {
-        console.log('All cities are active.');
+        console.log("All cities are active.");
       } else {
-        console.log('Not all cities are active.');
-        console.log(quizToken)
+        console.log("Not all cities are active.");
+        console.log(quizToken);
       }
-      setTimeout(() => {
-        localStorage.removeItem('quizToken');
-        console.log('Token removed after 2-3 seconds.');
-      }, 3000);
+      // setTimeout(() => {
+      //   localStorage.removeItem('quizToken');
+      //   console.log('Token removed after 2-3 seconds.');
+      // }, 3000);
     }
 
     return (
       <div>
-      <ul className="navbar">
+        <ul className="navbar">
           <li className="navbar-item username">{userName}</li>
           <li className="navbar-item logoutbutton">
             <button onClick={handleSubmit}>ODJAVA</button>
           </li>
-      </ul>
-      <div className="map-container">
-        <MapContainer
-          center={initialCenter}
-          zoom={9}
-          scrollWheelZoom={true}
-          minZoom={3}
-          maxBounds={worldBounds}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+        </ul>
+        <div className="map-container">
+          <MapContainer
+            center={initialCenter}
+            zoom={9}
+            scrollWheelZoom={true}
+            minZoom={3}
+            maxBounds={worldBounds}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-          {cities.data.map((cityData) => (
-            <Marker
-              key={cityData.id}
-              position={[cityData.city.latitude, cityData.city.longitude]}
-              icon={cityData.status === "active" ? activeIcon : inactiveIcon}
-              interactive={cityData.status === "active"}>
-              <Popup>
-                <QRCodePopup cityInfo={cityData.city} />
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </div>
+            {cities.data.map((cityData) => (
+              <Marker
+                key={cityData.id}
+                position={[cityData.city.latitude, cityData.city.longitude]}
+                icon={cityData.status === "active" ? activeIcon : inactiveIcon}
+                interactive={cityData.status === "active"}>
+                <Popup>
+                  <QRCodePopup cityInfo={cityData.city} />
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
       </div>
     );
   }

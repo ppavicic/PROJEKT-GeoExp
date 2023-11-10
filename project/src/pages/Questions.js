@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../styles/Question.css";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor((Math.random() * (i + 1)) % 4);
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+// function shuffleArray(array) {
+//   for (let i = array.length - 1; i > 0; i--) {
+//     const j = Math.floor((Math.random() * (i + 1)) % 4);
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// }
 
 function Question() {
+  const navigate = useNavigate();
+
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
@@ -37,7 +39,7 @@ function Question() {
 
     const requestBody = {
       "city-id": cityId,
-      "answer": answer
+      answer: answer,
     };
 
     fetch("/api/question", {
@@ -52,7 +54,8 @@ function Question() {
       } else {
         res.json().then((data) => {
           console.log("Response data:", data.info);
-          //localStorage.setItem("quizToken", data.info);
+          localStorage.setItem("quizToken", data.info);
+          navigate("/home");
         });
       }
     });
@@ -69,9 +72,7 @@ function Question() {
       if (res.status !== 200) {
       } else {
         res.json().then((data) => {
-          const answers = shuffleArray(
-            data.question.offered_answers.split(";")
-          );
+          const answers = data.question.offered_answers.split(";");
           console.log(answers);
           setQuestion(data.question.text);
           setQuestion1(answers[0]);
@@ -93,7 +94,7 @@ function Question() {
             className="answer-button"
             name="answer-button"
             onClick={handleClick}
-            value={"question 1"}>
+            value={question1}>
             {question1}
           </button>
         </div>
@@ -102,7 +103,7 @@ function Question() {
             className="answer-button"
             name="answer-button"
             onClick={handleClick}
-            value={"question 2"}>
+            value={question2}>
             {question2}
           </button>
         </div>
@@ -111,7 +112,7 @@ function Question() {
             className="answer-button"
             name="answer-button"
             onClick={handleClick}
-            value={"question 3"}>
+            value={question3}>
             {question3}
           </button>
         </div>
@@ -120,7 +121,7 @@ function Question() {
             className="answer-button"
             name="answer-button"
             onClick={handleClick}
-            value={"question 4"}>
+            value={question4}>
             {question4}
           </button>
         </div>
