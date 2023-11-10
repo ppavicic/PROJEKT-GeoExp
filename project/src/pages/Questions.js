@@ -24,7 +24,9 @@ function Question() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const cityName = searchParams.get("cityName");
+  const cityId = searchParams.get("cityId");
   console.log(cityName);
+  console.log(cityId);
 
   const token = localStorage.getItem("token");
   const handleClick = (event) => {
@@ -32,6 +34,28 @@ function Question() {
     const answer = event.target.value;
     setAnswer(answer);
     console.log(answer);
+
+    const requestBody = {
+      "city-id": cityId,
+      "answer": answer
+    };
+
+    fetch("/api/question", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify({ requestBody }),
+    }).then((res) => {
+      if (res.status !== 200) {
+      } else {
+        res.json().then((data) => {
+          console.log("Response data:", data.info);
+          //localStorage.setItem("quizToken", data.info);
+        });
+      }
+    });
   };
 
   useEffect(() => {

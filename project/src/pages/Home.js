@@ -88,6 +88,21 @@ export const Home = () => {
   console.log("Cities --> ");
   console.log(cities.data);
   if (cities.data !== undefined) {
+    const quizToken = localStorage.getItem('quizToken'); 
+    if(quizToken){
+      const areAllCitiesActive = cities.data.every(cityData => cityData.status === 'active');
+      if (areAllCitiesActive) {
+        console.log('All cities are active.');
+      } else {
+        console.log('Not all cities are active.');
+        console.log(quizToken)
+      }
+      setTimeout(() => {
+        localStorage.removeItem('quizToken');
+        console.log('Token removed after 2-3 seconds.');
+      }, 3000);
+    }
+
     return (
       <div>
       <ul className="navbar">
