@@ -21,8 +21,8 @@ input[type="submit"] {
   font-size: 15px;
   background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
   border: 1px solid black;
-  color: #fff;
   padding: 10px 20px;
+  background-color: #eaeaee;
 }
 
 input[type="submit"]:hover {

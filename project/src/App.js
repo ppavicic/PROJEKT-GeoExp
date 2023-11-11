@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} exact />
         <Route path="/question" element={
-          // <PrivateRoutes>
-          <Question cityInfo={CityInfo} />}
-          // </PrivateRoutes>}
+          <PrivateRoutes>
+            <Question cityInfo={CityInfo} />
+          </PrivateRoutes>}
           exact />
         <Route path="/registration" element={<Registration />} exact />
         <Route path="/home" element={

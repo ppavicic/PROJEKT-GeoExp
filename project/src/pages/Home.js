@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { Alert } from 'react-bootstrap'
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
+import { StamenTileLayer } from 'leaflet';
+import pandaImg from "../Assets/panda2bezPoz.png";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ export const Home = () => {
   const LeafIcon = L.Icon.extend({
     options: {},
   });
+
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
   const worldBounds = [
@@ -118,32 +121,41 @@ export const Home = () => {
             <button onClick={handleSubmit}>ODJAVA</button>
           </li>
         </ul>
-        <div className="map-container">
-          <MapContainer
-            center={initialCenter}
-            zoom={9}
-            scrollWheelZoom={true}
-            minZoom={3}
-            maxBounds={worldBounds}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+        <div className="bigContainer">
 
-            {cities.data.map((cityData) => (
-              <Marker
-                key={cityData.id}
-                position={[cityData.city.latitude, cityData.city.longitude]}
-                icon={cityData.status === "active" ? activeIcon : inactiveIcon}
-                interactive={cityData.status === "active"}>
-                <Popup>
-                  <QRCodePopup cityInfo={cityData.city} />
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-          {msgShow &&
-            <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
+          <div className="map-container">
+            <MapContainer
+              center={initialCenter}
+              zoom={9}
+              scrollWheelZoom={true}
+              minZoom={3}
+              maxBounds={worldBounds}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+
+              {cities.data.map((cityData) => (
+                <Marker
+                  key={cityData.id}
+                  position={[cityData.city.latitude, cityData.city.longitude]}
+                  icon={cityData.status === "active" ? activeIcon : inactiveIcon}
+                  interactive={cityData.status === "active"}>
+                  <Popup>
+                    <QRCodePopup cityInfo={cityData.city} />
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+            {msgShow &&
+              <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
+          </div>
+          <div className="homePageContainer">
+            <h1 className="titleHomePage">Geografska ekspedicija</h1>
+
+            <img src={pandaImg} alt="Panda pic" />
+
+          </div>
         </div>
       </div>
     );

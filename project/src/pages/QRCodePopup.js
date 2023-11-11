@@ -54,8 +54,8 @@ export const QRCodePopup = ({ cityInfo }) => {
   return (
     <div>
       <QRCode value={qrCodeData} size={160} />
-      <p>Scan the QR code for info about the city</p>
-      <input type="text" value={enteredPIN} onChange={handlePinChange} placeholder="Enter PIN" />
+      <p>Skeniraj QR kod za informacije o gradu!</p>
+      <input type="text" value={enteredPIN} onChange={handlePinChange} placeholder="Upiši PIN" />
       <button onClick={handleSubmit}>Otvori pitanje</button>
     </div>
   );

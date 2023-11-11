@@ -15,7 +15,6 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const session = { name, password };
-    console.log(session);
     fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
