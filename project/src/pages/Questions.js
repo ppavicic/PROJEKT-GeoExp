@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../styles/Question.css";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Alert } from 'react-bootstrap'
 
 // function shuffleArray(array) {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -23,9 +22,6 @@ function Question() {
 
   const [value, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
-  const [popupMsg, setPopupMsg] = useState("");
-  const [taskSucces, setTaskSuccess] = useState(false);
-  const [taskError, settaskError] = useState(false);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -59,14 +55,10 @@ function Question() {
         res.json().then((data) => {
           console.log("Response data:", data.info);
           localStorage.setItem("quizToken", data.info);
-          setPopupMsg(data.info);
-          if(data.info === "Wrong answer! Please try again."){
-            settaskError(true);
-          }else{
-            setTaskSuccess(true);
-            setTimeout(() => {
-              navigate("/home");
-            }, 4000);
+          if (data.info === "Wrong answer! Please try again.") {
+            window.alert(data.info);
+          } else {
+            navigate("/home");
           }
         });
       }
@@ -94,7 +86,7 @@ function Question() {
         });
       }
     });
-  });
+  }, [cityName, token]);
 
   const questionForm = (
     <div className="container">
@@ -144,10 +136,6 @@ function Question() {
   return (
     <div className="app">
       <div className="login-form">{questionForm}</div>
-      {taskSucces && 
-        <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'success'}>{popupMsg}</Alert></div>}
-      {taskError &&
-        <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
     </div>
   );
 }
