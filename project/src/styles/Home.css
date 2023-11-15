@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
 .map-container {
    height: 80vh;
    width: 50%;
@@ -29,11 +31,14 @@
 }
 
 /* Sredite unutar .homePageContainer kako želite */
-.homePageContainer img {
-   width: 400px;
-   height: 320px;
+.PandaPic {
+   width: 350px;
+   height: 300px;
+}
 
-
+.titlePic {
+   width: 600px;
+   height: 240px;
 }
 
 /* Veliki kontejner koji obuhvaća oba kontejnera */
@@ -43,19 +48,11 @@
    clear: both; /* Rješava float problema */
 }
 
-
-.titleHomePage {
-   background: linear-gradient(45deg, #303f39, #477359, #366939, #4c8b44, #62d93e);
-   -webkit-background-clip: text;
-   color: transparent;
-   display: inline-block;
-   font-family: 'Fredoka One', sans-serif;
-   font-size: 80px;
- }
  
  
 
 .navbar {
+   
    display: flex;
    justify-content: space-between;
    background-color: grey; /* Background color of the navbar */
@@ -63,7 +60,9 @@
    list-style-type: none;
    padding: 10px;
    margin: 0%;
+   display: none;
 }
+
 
 .navbar-item {
    margin: 0;

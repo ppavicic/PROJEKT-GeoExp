@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 import { StamenTileLayer } from 'leaflet';
-import pandaImg from "../Assets/panda2bezPoz.png";
+import pandaImg from "../Assets/panda7.png";
+import titleImg from "../Assets/NASLOV4.png";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -133,13 +134,12 @@ export const Home = () => {
                 </Marker>
               ))}
             </MapContainer>
-            {msgShow &&
-              <div style={{ zIndex: 1 }}><Alert className="alert-dismissible fade show" variant={'danger'}>{popupMsg}</Alert></div>}
+
           </div>
           <div className="homePageContainer">
-            <h1 className="titleHomePage">Geografska ekspedicija</h1>
+            <h1 className="titleHomePage">  <img src={titleImg} alt="Title pic" className="titlePic" /></h1>
 
-            <img src={pandaImg} alt="Panda pic" />
+            <img src={pandaImg} alt="Panda pic" className="PandaPic" />
 
           </div>
         </div>
