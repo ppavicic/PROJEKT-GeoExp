@@ -2,14 +2,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
 
 .map-container {
-   height: 80vh;
+   height: 50vh;
    width: 50%;
    margin: 30px; /* Razmak lijevo i gore */
-   float: left;
    border: 5px solid #333; /* Dodajte boju i širinu okvira prema želji */
    border-radius: 10px; /* Dodajte zaobljenost rubova ako želite */
    overflow: hidden;
-}
+   position: relative; /* Dodajte relativni položaj kako bi se apsolutno pozicionirali elementi unutar .map-container */
+   margin-left: 400px;
+   margin-top: 150px;
+ }
+ 
+ .PandaPic {
+   position: absolute;
+   top: 230px; 
+   left: 100px; 
+   z-index: 9999; /* Postavite visok z-index za sliku pande */
+ }
+ .suitcasePic {
+   position: absolute;
+   top: 360px; 
+   right: 180px; 
+   z-index: 9999; /* Postavite visok z-index za sliku pande */
+ }
+ 
+
 .leaflet-container {
    height: 100%;
    width: 100%;
@@ -42,11 +59,11 @@
 }
 
 /* Veliki kontejner koji obuhvaća oba kontejnera */
-.bigContainer {
+/*.bigContainer {
    width: 100%;
    height: 100vh;
-   clear: both; /* Rješava float problema */
-}
+   clear: both; 
+}*/
 
  
  

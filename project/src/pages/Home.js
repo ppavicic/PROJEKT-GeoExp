@@ -9,6 +9,7 @@ import { URL } from "./Constants";
 import { StamenTileLayer } from 'leaflet';
 import pandaImg from "../Assets/panda7.png";
 import titleImg from "../Assets/NASLOV4.png";
+import suitcaseImg from "../Assets/suitcase.png";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -111,6 +112,7 @@ export const Home = () => {
         <div className="bigContainer">
 
           <div className="map-container">
+
             <MapContainer
               center={initialCenter}
               zoom={9}
@@ -135,13 +137,18 @@ export const Home = () => {
               ))}
             </MapContainer>
 
-          </div>
-          <div className="homePageContainer">
-            <h1 className="titleHomePage">  <img src={titleImg} alt="Title pic" className="titlePic" /></h1>
 
+          </div>
+          <div>
             <img src={pandaImg} alt="Panda pic" className="PandaPic" />
-
+            <img src={suitcaseImg} alt="Panda pic" className="suitcasePic" />
           </div>
+          {/*<div className="homePageContainer">
+            {/*<h1 className="titleHomePage">  <img src={titleImg} alt="Title pic" className="titlePic" /></h1>*/}
+
+          {/*<img src={pandaImg} alt="Panda pic" className="PandaPic" />
+
+          </div>*/}
         </div>
       </div>
     );
