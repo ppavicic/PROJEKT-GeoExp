@@ -1,31 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
 
-.map-container {
+
+.bigContainer {
+   position: relative;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .map-container {
    height: 50vh;
    width: 50%;
-   margin: 30px; /* Razmak lijevo i gore */
-   border: 5px solid #333; /* Dodajte boju i širinu okvira prema želji */
-   border-radius: 10px; /* Dodajte zaobljenost rubova ako želite */
+   margin: 30px;
+   border: 2px solid #333;
+   border-radius: 10px;
    overflow: hidden;
-   position: relative; /* Dodajte relativni položaj kako bi se apsolutno pozicionirali elementi unutar .map-container */
-   margin-left: 400px;
-   margin-top: 150px;
+   position: relative;
  }
  
- .PandaPic {
+ .image-container-Panda {
    position: absolute;
-   top: 230px; 
-   left: 100px; 
-   z-index: 9999; /* Postavite visok z-index za sliku pande */
- }
- .suitcasePic {
-   position: absolute;
-   top: 360px; 
-   right: 180px; 
-   z-index: 9999; /* Postavite visok z-index za sliku pande */
+   top: 60%;
+   left: 17%;
+   transform: translate(-50%, -50%);
+   z-index: 9999;
+   max-width: 90%; /* Adjust the maximum width of the container */
+   max-height: 90vh; /* Adjust the maximum height of the container */
+   width: 300px;
+   height: 350px;
  }
  
+ .image-container-Panda img {
+   width: 100%; /* Ensure the image fills its container */
+   height: auto; /* Maintain aspect ratio */
+   display: block;
+}
+ 
+.image-container-Suitcase {
+   position: absolute;
+   top: 76%;
+   right: 10%;
+   transform: translate(-50%, -50%);
+   z-index: 9999;
+   max-width: 90%; /* Adjust the maximum width of the container */
+   max-height: 90vh; /* Adjust the maximum height of the container */
+   width: 180px;
+   height: 250px;
+ }
+ 
+ .image-container-Suitcase img {
+   width: 100%; /* Ensure the image fills its container */
+   height: auto; /* Maintain aspect ratio */
+   display: block;
+}
+.image-container-Ticket {
+   position: absolute;
+   top: 30%;
+   right: 10%;
+   transform: translate(-50%, -50%);
+   z-index: 9999;
+   max-width: 90%; /* Adjust the maximum width of the container */
+   max-height: 90vh; /* Adjust the maximum height of the container */
+   width: 220px;
+   height: 280px;
+ }
+ 
+ .image-container-Ticket img {
+   width: 100%; /* Ensure the image fills its container */
+   height: auto; /* Maintain aspect ratio */
+   display: block;
+}
+.image-container-ProfilePic {
+   position: absolute;
+   top: 10%;
+   right: -3%;
+   transform: translate(-50%, -50%);
+   z-index: 9999;
+   max-width: 90%; /* Adjust the maximum width of the container */
+   max-height: 90vh; /* Adjust the maximum height of the container */
+   width: 120px;
+   height: 120px;
+ }
+ 
+ .image-container-ProfilePic img {
+   width: 100%; /* Ensure the image fills its container */
+   height: auto; /* Maintain aspect ratio */
+   display: block;
+}
+.image-container-ProfilePic:hover img {
+   transform: scale(1.2); /* Set the scale to 1 to prevent resizing on hover */
+ }
 
 .leaflet-container {
    height: 100%;
@@ -37,33 +103,14 @@
 .leaflet-tile {
   filter: brightness(120%); /* Dodajte svjetlinu pločama za dodatne boje */
 }
-/* Stilizacija za desni kontejner (tekst i slika) */
-.homePageContainer {
 
-   height: 100vh;
-   width: 40%;
-   float: right;
-   box-sizing: border-box; /* Ovo osigurava da padding ne utječe na ukupnu širinu i visinu */
-   margin: 0;
-}
-
-/* Sredite unutar .homePageContainer kako želite */
-.PandaPic {
-   width: 350px;
-   height: 300px;
-}
 
 .titlePic {
    width: 600px;
    height: 240px;
 }
 
-/* Veliki kontejner koji obuhvaća oba kontejnera */
-/*.bigContainer {
-   width: 100%;
-   height: 100vh;
-   clear: both; 
-}*/
+
 
  
  
