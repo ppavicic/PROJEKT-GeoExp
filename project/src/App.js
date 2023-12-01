@@ -6,6 +6,7 @@ import Login from "./pages/Login"
 import Question from "./pages/Questions"
 import Registration from "./pages/Registration"
 import PrivateRoutes from './pages/Private';
+import { ProfilePage } from "./pages/ProfilePage"
 
 function App() {
   return (
@@ -26,6 +27,11 @@ function App() {
         <Route path="/cityInfo" element={
           <PrivateRoutes>
             <CityInfo />
+          </PrivateRoutes>}
+          exact />
+        <Route path="/profile" element={
+          <PrivateRoutes>
+            <ProfilePage />
           </PrivateRoutes>}
           exact />
       </Routes>

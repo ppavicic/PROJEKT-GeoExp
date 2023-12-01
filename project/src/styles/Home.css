@@ -41,13 +41,13 @@
 .image-container-Suitcase {
    position: absolute;
    top: 76%;
-   right: 10%;
+   right: 13%;
    transform: translate(-50%, -50%);
    z-index: 9999;
    max-width: 90%; /* Adjust the maximum width of the container */
    max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 180px;
-   height: 250px;
+   width: 160px;
+   height: 230px;
  }
  
  .image-container-Suitcase img {
@@ -92,6 +92,24 @@
 .image-container-ProfilePic:hover img {
    transform: scale(1.2); /* Set the scale to 1 to prevent resizing on hover */
  }
+
+ .image-container-Sign {
+   position: absolute;
+   top:58%;
+   right: 7%;
+   transform: translate(-50%, -50%);
+   z-index: 500;
+   max-width: 90%; /* Adjust the maximum width of the container */
+   max-height: 90vh; /* Adjust the maximum height of the container */
+   width: 250px;
+   height: 300px;
+ }
+ 
+ .image-container-Sign img {
+   width: 100%; /* Ensure the image fills its container */
+   height: auto; /* Maintain aspect ratio */
+   display: block;
+}
 
 .leaflet-container {
    height: 100%;

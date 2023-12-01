@@ -8,12 +8,15 @@ import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 import { StamenTileLayer } from 'leaflet';
 import pandaImg from "../Assets/panda7.png";
-import titleImg from "../Assets/NASLOV4.png";
+import titleImg from "../Assets/TITLE.png";
 import suitcaseImg from "../Assets/suitcase.png";
 import ticketImg from "../Assets/ticket.png";
 import profileImg from "../Assets/profilePic.png";
+import signImg from "../Assets/sign.png";
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
+  document.body.style.backgroundColor = '#f0f0f0';
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
@@ -111,6 +114,7 @@ export const Home = () => {
             <button onClick={handleSubmit}>ODJAVA</button>
           </li>
         </ul>
+
         <div className="bigContainer">
           <div className="map-container">
             <MapContainer
@@ -149,8 +153,14 @@ export const Home = () => {
           <div className="image-container-Ticket">
             <img src={ticketImg} alt="Ticket pic" className="ticketPic" />
           </div>
+
           <div className="image-container-ProfilePic">
-            <img src={profileImg} alt="Profile pic" className="profilePic" />
+            <Link to="/profile">
+              <img src={profileImg} alt="Profile pic" className="profilePic" />
+            </Link>
+          </div>
+          <div className="image-container-Sign">
+            <img src={signImg} alt="Sign pic" className="signPic" />
           </div>
         </div>
       </div>
