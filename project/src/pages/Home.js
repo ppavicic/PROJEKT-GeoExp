@@ -13,6 +13,7 @@ import suitcaseImg from "../Assets/suitcase.png";
 import ticketImg from "../Assets/ticket.png";
 import profileImg from "../Assets/profilePic.png";
 import signImg from "../Assets/sign.png";
+import starImg from "../Assets/star.png";
 import { Link } from 'react-router-dom';
 
 export const Home = () => {
@@ -24,6 +25,33 @@ export const Home = () => {
   const LeafIcon = L.Icon.extend({
     options: {},
   });
+
+  let stars = null;
+  let points = 111;
+
+
+  if (points >= 100) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  } else if (points >= 50 && points < 100) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  } else if (points >= 10 && points < 50) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  }
 
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
@@ -135,7 +163,11 @@ export const Home = () => {
                   icon={cityData.status === "active" ? activeIcon : inactiveIcon}
                   interactive={cityData.status === "active"}>
                   <Popup>
-                    <QRCodePopup cityInfo={cityData.city} />
+                    {/*<QRCodePopup cityInfo={cityData.city} />*/}
+                    <div>
+                      {stars && <div className="starsImg">{stars}</div>}
+                    </div>
+
                   </Popup>
                 </Marker>
               ))}

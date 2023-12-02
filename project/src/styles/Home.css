@@ -160,5 +160,16 @@
    text-align: right;
 }
 
-
+.stars-container {
+   display: flex;
+   flex-direction: row; 
+   align-items: center; 
+ }
+ 
+ .stars-container img {
+   margin: 3px; 
+   height: 30px;
+   width: 30px;
+ }
+ 
  

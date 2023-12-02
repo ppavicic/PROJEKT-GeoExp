@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
    document.body.style.backgroundColor = '#white';
-   var points = 11;
+   var points = 111;
    var username = localStorage.getItem("user");
    const navigate = useNavigate();
 
