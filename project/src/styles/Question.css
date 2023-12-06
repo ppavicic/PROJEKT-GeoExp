@@ -42,7 +42,7 @@ input[type="submit"]:hover {
   align-items: center;
   margin-top: 10px;
 }
-.container {
+.containerQuestion {
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -58,7 +58,7 @@ input[type="submit"]:hover {
   display: flex;
   flex-direction: column;
 }
-.login-form {
+.login-form-Question {
   background-color: #cccc;
   border-radius: 5px;
   padding: 2rem;

@@ -84,7 +84,7 @@
    width: 150px;
    border: none;
    background-color: #000;
-   color: #aeaeae;
+   color: white;
    font-size: 15px
 }
 .btn2 {
@@ -92,7 +92,7 @@
    width: 150px;
    border: none;
    background-color: #000;
-   color: #aeaeae;
+   color: white;
    font-size: 15px;
    margin-top: 10px;
 }

@@ -171,5 +171,21 @@
    height: 30px;
    width: 30px;
  }
+
+ @media screen and (max-width: 800px) {
+  .image-container-Sign {
+      display: none; /* Skriva elemente na mobilnim uređajima */
+  }
+}
+@media screen and (max-width: 800px) {
+  .image-container-Ticket {
+      display: none; /* Skriva elemente na mobilnim uređajima */
+  }
+}
+@media screen and (max-width: 800px) {
+  .image-container-Suitcase {
+      display: none; /* Skriva elemente na mobilnim uređajima */
+  }
+}
  
  
