@@ -7,13 +7,12 @@
   gap: 20px;
   height: 100vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+  background-color: antiquewhite;
 }
 
 input[type="text"],
 input[type="password"] {
   height: 20px;
-  background-color: #eaeaee;
 }
 
 input[type="submit"] {
@@ -49,7 +48,7 @@ input[type="submit"]:hover {
   margin: auto;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: antiquewhite;
   padding-bottom: 30px;
   width: 400px;
 }
@@ -60,7 +59,8 @@ input[type="submit"]:hover {
   flex-direction: column;
 }
 .login-form {
-  background-color: white;
+  background-color: #cccc;
+  border-radius: 5px;
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -97,23 +97,11 @@ input[type="submit"]:hover {
   border-radius: 6px;
 }
 
-/* .button{
-    
-    cursor: pointer;
-    font-size: 15px;
-    background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
-    border: 1px solid black;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 6px;
-    
-  }*/
-
 .question-text {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-weight: 600;
-  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
+  background-color: black;
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -124,10 +112,11 @@ input[type="submit"]:hover {
 .answer-button {
   cursor: pointer;
   width: 300px;
-  height: 30px;
+  height: 50px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 15px;
   color: black;
   border-radius: 5px;
+  background-color: whitesmoke;
 }

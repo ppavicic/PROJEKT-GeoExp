@@ -7,6 +7,7 @@ import Question from "./pages/Questions"
 import Registration from "./pages/Registration"
 import PrivateRoutes from './pages/Private';
 import { ProfilePage } from "./pages/ProfilePage"
+import { Quiz } from "./pages/Quiz"
 
 function App() {
   return (
@@ -32,6 +33,11 @@ function App() {
         <Route path="/profile" element={
           <PrivateRoutes>
             <ProfilePage />
+          </PrivateRoutes>}
+          exact />
+        <Route path="/quiz" element={
+          <PrivateRoutes>
+            <Quiz />
           </PrivateRoutes>}
           exact />
       </Routes>

@@ -97,7 +97,7 @@ export const Home = () => {
       }
     });
 
-    const quizToken = localStorage.getItem("quizToken");
+    const quizToken = localStorage.getItem("quizToken");  //ovo mozda bude trebalo izbrisat
     if (quizToken) {
       setTimeout(() => {
         window.alert(quizToken);
