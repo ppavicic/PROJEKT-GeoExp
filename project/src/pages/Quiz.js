@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question";
 import { useNavigate } from "react-router-dom";
 
-function Quiz() {
+export const Quiz = () => {
     const questions = [
         { id: 1, text: "What is the capital of France?", options: ["Paris", "Berlin", "London", "Madrid"], correctAnswer: "Paris" },
         { id: 2, text: "Who wrote Romeo and Juliet?", options: ["Shakespeare", "Hemingway", "Tolstoy", "Dickens"], correctAnswer: "Shakespeare" },
@@ -79,6 +79,4 @@ function Quiz() {
             />
         </div>
     );
-}
-
-export default Quiz;
+};
