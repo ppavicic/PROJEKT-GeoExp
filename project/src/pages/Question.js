@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/question.css";
+import "../styles/Question.css";
 
 function Question({ id, text, options, onAnswer }) {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -13,7 +13,7 @@ function Question({ id, text, options, onAnswer }) {
     };
 
     const questionForm = (
-        <div className="container">
+        <div className="containerQuestion">
             <div className="question-text">{id}. {text}</div>
             <div className="inputs">
                 {options.map((option, index) => (
@@ -31,7 +31,7 @@ function Question({ id, text, options, onAnswer }) {
 
     return (
         <div className="app">
-            <div className="login-form">{questionForm}</div>
+            <div className="login-form-Question">{questionForm}</div>
         </div>
     );
 }
