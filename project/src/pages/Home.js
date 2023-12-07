@@ -21,6 +21,17 @@ export const Home = () => {
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
+  var status = false;
+
+
+  const cityDataEx = {
+    cityName: 'New York', // Replace with your city data
+    population: '8.4 million',
+    attractions: ['Central Park', 'Empire State Building', 'Times Square'],
+    // Other city-related data...
+  };
+
+
 
   const LeafIcon = L.Icon.extend({
     options: {},
@@ -161,13 +172,23 @@ export const Home = () => {
                   key={cityData.id}
                   position={[cityData.city.latitude, cityData.city.longitude]}
                   icon={cityData.status === "active" ? activeIcon : inactiveIcon}
-                  interactive={cityData.status === "active"}>
+                  interactive={cityData.status === "active"}
+                >
                   <Popup>
-                    {/*<QRCodePopup cityInfo={cityData.city} />*/}
                     <div>
-                      {stars && <div className="starsImg">{stars}</div>}
-                    </div>
+                      {!status &&
+                        <Link
+                          to={`/cityInfo/${cityData.city.name}`}
+                          state={{ cityData }} // Pass cityData to CityInfo
 
+                        >
+                          <button>Informacije o gradu</button>
+                        </Link>
+                      }
+                    </div>
+                    <div>
+                      {status && stars && <div className="starsImg">{stars}</div>}
+                    </div>
                   </Popup>
                 </Marker>
               ))}
@@ -195,7 +216,7 @@ export const Home = () => {
             <img src={signImg} alt="Sign pic" className="signPic" />
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 };

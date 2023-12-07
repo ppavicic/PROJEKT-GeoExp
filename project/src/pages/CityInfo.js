@@ -6,16 +6,21 @@ import { URL } from "./Constants";
 export const CityInfo = () => {
   const location = useLocation();
 
-  const searchParams = new URLSearchParams(location.search);
+  const { cityData } = location.state || {};
+  console.log(cityData);
+
+
+
+  /*const searchParams = new URLSearchParams(location.search);
   const cityName = searchParams.get("cityName");
   //const cityDescription = searchParams.get('cityDescription');
   const encodedPin = searchParams.get("pin");
   const pin = atob(decodeURIComponent(encodedPin));
 
   const [pinGenerated, setPinGenerated] = useState(false);
-  const [cityDescription, setCityDescription] = useState("");
+  const [cityDescription, setCityDescription] = useState("");*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     const token = localStorage.getItem("token");
 
     fetch(`/api/city/description?city-name=${cityName}`, {
@@ -42,22 +47,24 @@ export const CityInfo = () => {
   const generateRandomPin = () => {
     setPinGenerated(true);
   };
-  console.log(pin, encodedPin);
+  console.log(pin, encodedPin);*/
 
   return (
     <div className="city-info">
-      <h1>{cityName}</h1>
+      <h1>{cityData.city.name}</h1>
+      <div>{cityData.city.description}</div>
+      {/* <h1>{cityName}</h1>
       {!pinGenerated && (
         <div>
           <p className="opis"> {cityDescription}</p>
-          <button onClick={generateRandomPin}>Generiraj PIN</button>
+          {/* <button onClick={generateRandomPin}>Generiraj PIN</button>
         </div>
       )}
       {pinGenerated && (
         <div>
           <p>Generirani PIN: {pin}</p>
         </div>
-      )}
+      )}*/}
     </div>
   );
 };

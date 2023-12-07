@@ -7,7 +7,7 @@ import Question from "./pages/Questions"
 import Registration from "./pages/Registration"
 import PrivateRoutes from './pages/Private';
 import { ProfilePage } from "./pages/ProfilePage"
-import Quiz from "./pages/Quiz"
+import { Quiz } from "./pages/Quiz"
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
             <Home />
           </PrivateRoutes>}
           exact />
-        <Route path="/cityInfo" element={
+        <Route path="/cityInfo/:name" element={
           <PrivateRoutes>
             <CityInfo />
           </PrivateRoutes>}
