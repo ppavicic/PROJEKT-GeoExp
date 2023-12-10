@@ -6,12 +6,12 @@ class UserCitiesQuery
 
   def update_user_cities
     City.find_each { |city| create_record(city.id) }
-    initial_active
+    # initial_active
   end
 
-  def initial_active
-    relation.where(user_id: user_id).sample.update(status: 'active')
-  end
+  # def initial_active
+  #   relation.where(user_id: user_id).sample.update(status: 'active')
+  # end
 
   private
 

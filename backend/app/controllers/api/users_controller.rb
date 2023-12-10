@@ -1,5 +1,7 @@
 module Api
   class UsersController < ApplicationController
+    before_action :authenticate
+
     def create
       user = User.new(user_params)
       if user.save
@@ -8,6 +10,10 @@ module Api
       else
         render json: { errors: user.errors }, status: :bad_request
       end
+    end
+
+    def points
+      render json: { points: current_user.points }, status: :ok
     end
 
     private

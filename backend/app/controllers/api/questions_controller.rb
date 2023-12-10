@@ -1,72 +1,73 @@
 module Api
   class QuestionsController < ApplicationController
     before_action :authenticate
-    before_action :set_city, only: :answer_check
-    before_action :set_cities, only: :answer_check
+    before_action :set_cities
 
     def answer_check
-      if @city.question.correct_answer.eql?(user_answer)
-        correct_answer
-      else
-        wrong_answer
-      end
+      render json: update, status: :ok unless update.nil?
+
+      render json: { info: 'Already answered' }
     end
 
     private
 
-    def correct_answer
-      update_status
+    def questions_answers
+      params['questions']
     end
 
-    def wrong_answer
-      render json: { info: 'Wrong answer! Please try again.' }, status: :ok
+    def city_id
+      params['city_id']
     end
 
-    def update_status
-      return answered_question unless updatable?
-
-      city = inactive_city
-      return all_done if city.nil?
-
-      @user_cities.where(city_id: city_id).first.update(answered: 'true')
-      city.update(status: 'active')
-      render json: { info: "Congratulations! You unlocked #{city.city.name}" },
-             status: :ok
+    def user_city
+      @user_cities.find(city_id)
     end
 
-    def updatable?
-      return true if @user_cities.where(city_id: city_id).first.answered.eql?('false')
-
-      false
+    def city
+      user_city.city
     end
 
-    def all_done
-      render json: { info: 'Congratulations! You unlocked all cities!' }, status: :ok
+    def check_answers # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      data = { counter: 0 }
+      questions_answers.each do |entry|
+        if answer(entry['id']).eql?(entry['answer'])
+          data[:counter] += 1
+          data[question(entry['id']).text] = 'true'
+        else
+          data[question(entry['id']).text] = 'false'
+        end
+      end
+      update_user(data[:counter])
+      data
     end
 
-    def answered_question
-      render json: { info: 'Congratulations! Your answer is correct!' }
+    def update_user(score)
+      current_points = current_user.points
+      current_user.update(points: current_points + score)
     end
 
-    def inactive_city
-      @user_cities.where(status: 'inactive').sample
+    def question(question_id)
+      city.questions.find(question_id)
     end
 
-    def set_city
-      @city = City.find(city_id)
-      authorize @city, :question?
+    def answer(question_id)
+      question(question_id).answer.correct
+    end
+
+    def update
+      return if user_city.status.eql?('active')
+
+      data = check_answers
+      user_city.update(status: 'active', score: data[:counter])
+      data
     end
 
     def set_cities
       @user_cities = policy_scope(UserCity)
     end
 
-    def city_id
-      params['requestBody']['city-id']
-    end
-
-    def user_answer
-      params['requestBody']['answer']
+    def inactive_city_count
+      @user_cities.where(status: 'inactive').count
     end
   end
 end

@@ -13,6 +13,10 @@ module Api
       @user_cities = policy_scope(UserCity)
     end
 
+    def user_points
+      @user_cities.first.user.points
+    end
+
     def city_id
       params['city-id']
     end
