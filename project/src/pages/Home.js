@@ -21,48 +21,11 @@ export const Home = () => {
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
-  var status = false;
-
-
-  const cityDataEx = {
-    cityName: 'New York', // Replace with your city data
-    population: '8.4 million',
-    attractions: ['Central Park', 'Empire State Building', 'Times Square'],
-    // Other city-related data...
-  };
-
 
 
   const LeafIcon = L.Icon.extend({
     options: {},
   });
-
-  let stars = null;
-  let points = 111;
-
-
-  if (points >= 100) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  } else if (points >= 50 && points < 100) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  } else if (points >= 10 && points < 50) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  }
 
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
@@ -142,7 +105,39 @@ export const Home = () => {
       });
   };
 
-  console.log("Cities --> ");
+  let stars = null;
+  let points = cities.score;
+
+
+  if (points == 3) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  } else if (points == 2) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  } else if (points == 1) {
+    stars = (
+      <div className="stars-container">
+        <img src={starImg} alt="Star" />
+      </div>
+    );
+  } else if (points == 0) {
+    <div className="stars-container">
+
+      Nema točnih odgovora
+    </div>
+  }
+
+
   console.log(cities.data);
   if (cities.data !== undefined) {
     return (
@@ -176,18 +171,17 @@ export const Home = () => {
                 >
                   <Popup>
                     <div>
-                      {!status &&
-                        <Link
+                      {cityData.status &&
+                        <Link style={{ textDecoration: 'none' }}
                           to={`/cityInfo/${cityData.city.name}`}
                           state={{ cityData }} // Pass cityData to CityInfo
-
                         >
-                          <button>Informacije o gradu</button>
+                          <button className="button-87">Informacije o gradu</button>
                         </Link>
                       }
                     </div>
                     <div>
-                      {status && stars && <div className="starsImg">{stars}</div>}
+                      {!cityData.status && stars && <div className="starsImg">{stars}</div>}
                     </div>
                   </Popup>
                 </Marker>
