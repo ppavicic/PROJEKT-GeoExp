@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CityInfo.css";
 import pandaznanja from "../Assets/panda_znanja.png";
+import pandaznanjabezoblacica from "../Assets/panda_znanja_bez_oblacica.png";
+
 import { useLocation } from "react-router-dom";
 
 function CityInfo() {
@@ -25,11 +27,16 @@ function CityInfo() {
   }*/
   function show_background() {
     const first = document.getElementById("container1");
+    const slika = document.getElementById("panda");
+
     if (first !== null & first.className === "container-desc") {
       first.className = "nevidis";
+      slika.src = pandaznanjabezoblacica
     } else{
       first.className = "container-desc"
+      slika.src = pandaznanja
     }
+    
   }
 
   const quiz_start = (event) => {
