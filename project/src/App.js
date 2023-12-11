@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from "./pages/Home"
-import { CityInfo } from "./pages/CityInfo"
+import  CityInfo  from "./pages/CityInfo"
 import Login from "./pages/Login"
 import Question from "./pages/Questions"
 import Registration from "./pages/Registration"
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} exact />
+        <Route path="/" element={<CityInfo />} exact />
         <Route path="/question" element={
           <PrivateRoutes>
             <Question cityInfo={CityInfo} />
@@ -25,7 +25,7 @@ function App() {
             <Home />
           </PrivateRoutes>}
           exact />
-        <Route path="/cityInfo/:name" element={
+        <Route path="/cityInfo" element={
           <PrivateRoutes>
             <CityInfo />
           </PrivateRoutes>}
