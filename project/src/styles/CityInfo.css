@@ -15,13 +15,20 @@
   height: 50vh;
 }
 
+.container-desc::-webkit-scrollbar {
+  display: none;
+}
+
+.quiz-start{
+  margin-bottom: 10px;
+}
 .panda-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#description {
+#data {
   margin: 20px;
 }
 

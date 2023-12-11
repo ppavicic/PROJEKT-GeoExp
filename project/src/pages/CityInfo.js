@@ -5,14 +5,15 @@ import pandaznanja from "../Assets/panda_znanja.png";
 import { useLocation } from "react-router-dom";
 
 function CityInfo() {
-  const location = useLocation();
+ /* const location = useLocation();
 
   const { cityData } = location.state || {};
   console.log(cityData);
   localStorage.setItem("city-id", JSON.stringify(cityData.id));
-
+  */
   const navigate = useNavigate();
-  function change_screen() {
+ 
+ /* function change_screen() {
     const first = document.getElementById("container1");
     const second = document.getElementById("container2");
     if (first !== null) {
@@ -21,16 +22,21 @@ function CityInfo() {
     }
     const panda = document.getElementById("panda");
     panda.onclick = quiz_start;
+  }*/
+  function show_background() {
+    const first = document.getElementById("container1");
+    if (first !== null & first.className === "container-desc") {
+      first.className = "nevidis";
+    } else{
+      first.className = "container-desc"
+    }
   }
 
   const quiz_start = (event) => {
     navigate("/quiz");
   };
 
-  const description = (
-    <div className="full-page">
-      <div class="information">
-        <div id="container1" class="container-desc">
+  /*<div id="container1" class="container-desc">
           <div id="description">
             <h2>
               Dobro došli dragi učenici danas ćete naučiti nesšto novo o Zagrebu
@@ -40,11 +46,28 @@ function CityInfo() {
               rekla nešto više o zagrebu
             </p>
           </div>
-        </div>
-        <div id="container2" class="nevidis">
-          <div id="description">
+        </div>*/
+
+  const description = (
+    <div className="full-page">
+      <div class="information">
+        <div id="container1" class="container-desc">
+          <h1>Title//cityData.name</h1>
+          <p>Kviz pokrećete klikom na pandu!</p>
+          <div id="data">
             <h2>Description</h2>
-            <p>{cityData.description.text}</p>
+            <p>//cityData.description.text</p>
+          </div>
+          <div id="data">
+            <h2>Trivia</h2>
+            <p>//cityData.trivia.text</p>
+          </div>
+          <div id="data">
+            <h2>Link</h2>
+            <p>//cityData.link.text</p>
+          </div>
+          <div>
+          <button onClick={quiz_start} className="quiz-start">Pokreni kviz</button>
           </div>
         </div>
       </div>
@@ -52,7 +75,7 @@ function CityInfo() {
         <img
           id="panda"
           className="panda-img"
-          onClick={change_screen}
+          onClick={show_background}
           src={pandaznanja}></img>
       </div>
     </div>

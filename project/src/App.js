@@ -14,6 +14,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} exact />
+        <Route path="/test" element={<CityInfo />} exact />
+
         <Route
           path="/question"
           element={
