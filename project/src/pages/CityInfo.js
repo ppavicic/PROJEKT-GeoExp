@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CityInfo.css";
 import pandaznanja from "../Assets/panda_znanja.png";
+import { useLocation } from "react-router-dom";
 
 function CityInfo() {
-  /*const location = useLocation();
+  const location = useLocation();
 
   const { cityData } = location.state || {};
   console.log(cityData);
-  localStorage.setItem('city-id', JSON.stringify(cityData.city.id));
-  */
-  
+  localStorage.setItem("city-id", JSON.stringify(cityData.id));
 
   const navigate = useNavigate();
   function change_screen() {
-
     const first = document.getElementById("container1");
     const second = document.getElementById("container2");
     if (first !== null) {
@@ -26,7 +24,6 @@ function CityInfo() {
   }
 
   const quiz_start = (event) => {
-    /*localStorage.setItem('city-id', JSON.stringify(cityData.city.id));*/
     navigate("/quiz");
   };
 
@@ -46,66 +43,8 @@ function CityInfo() {
         </div>
         <div id="container2" class="nevidis">
           <div id="description">
-            <p>
-              Upute! U ovom prozoru vam se nalaze svi podatci o zagrebu uz
-              pomoću kotačića na mišu možete ići dolje za dodatan tekst kada ste
-              završili s čitanjem kliknite mišem na našu prekrasnu padnu kako
-              biste pokrenuli kviz provjere znanja
-            </p>
             <h2>Description</h2>
-            <p>
-              Zagreb je glavni grad Republike Hrvatske i najveći grad u
-              Hrvatskoj po broju stanovnika. Grad Zagreb je kao glavni grad
-              Hrvatske posebna teritorijalna, upravna i samoupravna jedinica.
-              Šire područje grada okuplja više od milijun stanovnika. Povijesno
-              gledajući, grad Zagreb izrastao je iz dvaju naselja na susjednim
-              brežuljcima, Gradeca i Kaptola, koji čine jezgru današnjega grada,
-              njegovo povijesno središte (Gornji i dio Donjega Grada). Nalazi se
-              na jugozapadnomu rubu Panonske nizine na prosječnoj nadmorskoj
-              visini od 122 m, podno južnih padina Medvednice, na lijevoj i
-              desnoj obali rijeke Save. Položaj grada Zagreba, koji je na mjestu
-              spajanja alpskog, dinarskog, jadranskog i panonskog područja,
-              omogućio je Zagrebu postati most između srednjoeuropskoga i
-              jadranskoga područja. Jedini je glavni grad u svijetu koji počinje
-              na slovo Z. Uz Beč, jedini je europski glavni grad s vlastitom
-              vinskom cestom (otvorena 2009.[3]) Također, jedini je europski
-              glavni grad sa skijalištem. Prema popisu stanovništva iz 2021. u
-              Zagrebu živi 767.131 stanovnika. Kao najveći i glavni grad, Zagreb
-              je kulturno, znanstveno, gospodarsko i upravno središte Republike
-              Hrvatske i Zagrebačke županije. Sjedište je Zagrebačke
-              nadbiskupije. Zahvaljujući ulozi najvećega prometnoga središta u
-              Hrvatskoj, razvijenoj industriji s dugom tradicijom i znanstvenim
-              i istraživačkim ustanovama, Zagreb je gospodarski najrazvijeniji
-              grad u Hrvatskoj.{" "}
-            </p>
-          </div>
-          <div id="description">
-            <h2>Description</h2>
-            <p>
-              Zagreb je glavni grad Republike Hrvatske i najveći grad u
-              Hrvatskoj po broju stanovnika. Grad Zagreb je kao glavni grad
-              Hrvatske posebna teritorijalna, upravna i samoupravna jedinica.
-              Šire područje grada okuplja više od milijun stanovnika. Povijesno
-              gledajući, grad Zagreb izrastao je iz dvaju naselja na susjednim
-              brežuljcima, Gradeca i Kaptola, koji čine jezgru današnjega grada,
-              njegovo povijesno središte (Gornji i dio Donjega Grada). Nalazi se
-              na jugozapadnomu rubu Panonske nizine na prosječnoj nadmorskoj
-              visini od 122 m, podno južnih padina Medvednice, na lijevoj i
-              desnoj obali rijeke Save. Položaj grada Zagreba, koji je na mjestu
-              spajanja alpskog, dinarskog, jadranskog i panonskog područja,
-              omogućio je Zagrebu postati most između srednjoeuropskoga i
-              jadranskoga područja. Jedini je glavni grad u svijetu koji počinje
-              na slovo Z. Uz Beč, jedini je europski glavni grad s vlastitom
-              vinskom cestom (otvorena 2009.[3]) Također, jedini je europski
-              glavni grad sa skijalištem. Prema popisu stanovništva iz 2021. u
-              Zagrebu živi 767.131 stanovnika. Kao najveći i glavni grad, Zagreb
-              je kulturno, znanstveno, gospodarsko i upravno središte Republike
-              Hrvatske i Zagrebačke županije. Sjedište je Zagrebačke
-              nadbiskupije. Zahvaljujući ulozi najvećega prometnoga središta u
-              Hrvatskoj, razvijenoj industriji s dugom tradicijom i znanstvenim
-              i istraživačkim ustanovama, Zagreb je gospodarski najrazvijeniji
-              grad u Hrvatskoj.{" "}
-            </p>
+            <p>{cityData.description.text}</p>
           </div>
         </div>
       </div>
@@ -114,8 +53,7 @@ function CityInfo() {
           id="panda"
           className="panda-img"
           onClick={change_screen}
-          src={pandaznanja}
-        ></img>
+          src={pandaznanja}></img>
       </div>
     </div>
   );
