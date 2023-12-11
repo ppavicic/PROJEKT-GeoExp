@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<CityInfo />} exact />
-        <Route path="/question" element={
+        <Route path="/question" element={   //ovo mozda bude trebalo izbrisat
           <PrivateRoutes>
             <Question cityInfo={CityInfo} />
           </PrivateRoutes>}

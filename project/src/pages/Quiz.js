@@ -14,6 +14,7 @@ export const Quiz = () => {
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
+    const cityId = localStorage.getItem("city-id");
 
     useEffect(() => {
         /*fetch("/", {     //change path
@@ -25,6 +26,7 @@ export const Quiz = () => {
             if (res.status !== 200) {
             } else {
                 res.json().then((data) => {
+                    console.log(data);
                     setQuestions(data);
                 });
             }
@@ -37,17 +39,20 @@ export const Quiz = () => {
     const handleAnswer = (option) => {
         setSelectedAnswers((prevSelectedAnswers) => ({
             ...prevSelectedAnswers,
-            [currentQuestionIndex + 1]: option,
-        }));
+            [currentQuestionIndex + 1]: { id: currentQuestionIndex + 1, answer: option },
+          }));
 
         localStorage.setItem("answers", JSON.stringify({ ...selectedAnswers, [currentQuestionIndex + 1]: option }));
 
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         } else {
-            //ovdje napravit post metodu da se posalju odgovori i onda sacekat response i tek onda navigate na home
-            const requestBody = JSON.parse(localStorage.getItem("answers"));
+            const requestBody = {
+                city_id: cityId,
+                questions: Object.values(selectedAnswers),
+            };
             console.log(requestBody)
+            localStorage.removeItem("city-id");
             /*fetch("/api/question", {
                 method: "POST",
                 headers: {
