@@ -75,26 +75,13 @@ function CityInfo() {
             </div>
             <div id="data" className="rightcolumn">
               <div className="details">
-              <h2>Link</h2>
+                <h2>Link</h2>
               </div>
               <a href="cityData.link.link">Više informacija</a>
-
             </div>
           </div>
-<<<<<<< HEAD
 
           <footer>
-=======
-          <div id="data">
-            <h2>Trivia</h2>
-            {/* <p>{cityData.trivia.value}</p>*/}
-          </div>
-          <div id="data">
-            <h2>Link</h2>
-            {/*  <a href={cityData.link.link}>Više informacija</a>*/}
-          </div>
-          <div>
->>>>>>> fda72bf9b733cd8b2b81882d0509fc61880e7a7d
             <button onClick={quiz_start} className="quiz-start">
               Pokreni kviz
             </button>
