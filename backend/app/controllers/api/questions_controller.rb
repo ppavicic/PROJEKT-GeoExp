@@ -4,23 +4,25 @@ module Api
     before_action :set_cities
 
     def answer_check
-      render json: update, status: :ok unless update.nil?
+      render json: update, status: :ok #unless update.nil?
 
-      render json: { info: 'Already answered' }
+      # render json: { info: 'Already answered' }
     end
 
     private
 
     def questions_answers
-      params['questions']
+      params['requestBody']['questions']
+      # params['questions']
     end
 
     def city_id
-      params['city_id']
+      params['requestBody']['city_id']
+      # params['city_id']
     end
 
     def user_city
-      @user_cities.find(city_id)
+      @user_cities.find_by(city_id: city_id)
     end
 
     def city
@@ -30,6 +32,7 @@ module Api
     def check_answers # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       data = { counter: 0 }
       questions_answers.each do |entry|
+        binding.pry
         if answer(entry['id']).eql?(entry['answer'])
           data[:counter] += 1
           data[question(entry['id']).text] = 'true'
@@ -55,10 +58,10 @@ module Api
     end
 
     def update
-      return if user_city.status.eql?('active')
+      return if user_city.status.eql?('inactive')
 
       data = check_answers
-      user_city.update(status: 'active', score: data[:counter])
+      user_city.update(status: 'inactive', score: data[:counter])
       data
     end
 
@@ -67,7 +70,7 @@ module Api
     end
 
     def inactive_city_count
-      @user_cities.where(status: 'inactive').count
+      @user_cities.where(status: 'active').count
     end
   end
 end

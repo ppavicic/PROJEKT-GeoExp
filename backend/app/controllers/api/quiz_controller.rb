@@ -10,7 +10,7 @@ module Api
     private
 
     def city_id
-      params['city-id']
+      params['city_id']
     end
 
     def set_cities

@@ -18,6 +18,6 @@ class UserCitiesQuery
   attr_accessor :relation, :user_id
 
   def create_record(city_id)
-    relation.create(city_id: city_id, user_id: @user_id, status: 'inactive')
+    relation.create(city_id: city_id, user_id: @user_id, status: 'active')
   end
 end

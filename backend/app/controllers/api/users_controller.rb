@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApplicationController
-    before_action :authenticate
+    before_action :authenticate, only: :points
 
     def create
       user = User.new(user_params)
