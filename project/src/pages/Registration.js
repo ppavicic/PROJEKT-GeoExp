@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-
 import "../styles/Login.css";
 import user from "../Assets/person.png";
 import passwordimg from "../Assets/password.png";
 import { useNavigate } from "react-router-dom";
 
 function Registration() {
-  // React States
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -31,7 +29,7 @@ function Registration() {
     });
   };
 
-  const renderForm1 = (
+  const registration_page = (
     <div className="container">
       <h1 className="title">Sign up</h1>
       <form onSubmit={handleSubmit}>
@@ -83,7 +81,7 @@ function Registration() {
 
   return (
     <div className="app">
-      <div className="login-form">{renderForm1}</div>
+      <div className="login-form">{registration_page}</div>
     </div>
   );
 }

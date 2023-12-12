@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
-import { StamenTileLayer } from 'leaflet';
+import { StamenTileLayer } from "leaflet";
 import pandaImg from "../Assets/panda7.png";
 import titleImg from "../Assets/TITLE.png";
 import suitcaseImg from "../Assets/suitcase.png";
@@ -14,19 +14,17 @@ import ticketImg from "../Assets/ticket.png";
 import profileImg from "../Assets/profilePic.png";
 import signImg from "../Assets/sign.png";
 import starImg from "../Assets/star.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Home = () => {
-  document.body.style.backgroundColor = '#f0f0f0';
+  document.body.style.backgroundColor = "#f0f0f0";
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
 
-
   const LeafIcon = L.Icon.extend({
     options: {},
   });
-
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
   const worldBounds = [
@@ -66,12 +64,12 @@ export const Home = () => {
       if (res.status !== 200) {
       } else {
         res.json().then((data) => {
-          setCities(data);
+          setCities(data.data);
         });
       }
     });
 
-    const quizToken = localStorage.getItem("quizToken");  //ovo mozda bude trebalo izbrisat
+    const quizToken = localStorage.getItem("quizToken"); //ovo mozda bude trebalo izbrisat
     if (quizToken) {
       setTimeout(() => {
         window.alert(quizToken);
@@ -167,23 +165,25 @@ export const Home = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              {cities.data.map((cityData) => (
+              {cities.map((cityData) => (
                 <Marker
-                  key={cityData.id}
+                  key={cityData.city.id}
                   position={[cityData.city.latitude, cityData.city.longitude]}
-                  icon={cityData.status === "active" ? activeIcon : inactiveIcon}
-                  interactive={cityData.status === "active"}
-                >
+                  icon={
+                    cityData.status === "active" ? activeIcon : inactiveIcon
+                  }>
                   <Popup>
-                    <div key={cityData.id}>
-                      {cityData.status === "active" &&
+                    <div>
+                      {cityData.status &&
                         <Link style={{ textDecoration: 'none' }}
                           to={`/cityInfo/${cityData.city.name}`}
                           state={{ cityData: cityData.city }} // Pass cityData to CityInfo
                         >
-                          <button className="button-87">Informacije o gradu</button>
+                          <button className="button-87">
+                            Informacije o gradu
+                          </button>
                         </Link>
-                      }
+                      )}
                     </div>
                     <div>
                       {cityData.status === "inactive" && stars && <div className="starsImg">{calculateStars(cityData.points)}</div>}
@@ -192,8 +192,6 @@ export const Home = () => {
                 </Marker>
               ))}
             </MapContainer>
-
-
           </div>
           <div className="image-container-Panda">
             <img src={pandaImg} alt="Panda pic" className="PandaPic" />
@@ -215,7 +213,7 @@ export const Home = () => {
             <img src={signImg} alt="Sign pic" className="signPic" />
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 };

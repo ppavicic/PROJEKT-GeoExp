@@ -1,25 +1,68 @@
-.city-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+.container-desc {
+  display: flex;
+  position: fixed;
+  bottom: 300px;
+  left: 15vw;
+  width: 70vw;
+  border: 3px solid;
+  border-radius: 60px;
+  background-color: white;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 50vh;
 }
-  
- .city-info img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
+
+.container-desc::-webkit-scrollbar {
+  display: none;
 }
-  
-.city-info h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+.quiz-start{
+  margin-bottom: 10px;
 }
-  
-.city-info p {
-    font-size: 16px;
-    text-align: center;
-    margin-bottom: 10px;
+.panda-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#data {
+  margin: 20px;
+}
+
+.panda_pic {
+  position: absolute;
+  left: 0;
+}
+
+.panda-img {
+  left: 40px;
+  position: fixed;
+  bottom: 8vh;
+  height: 250px;
+}
+
+.information {
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nevidis {
+  visibility: hidden;
+}
+
+.full-page {
+  background-image: url("../Assets/bamboo.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -6,7 +6,6 @@ import user from "../Assets/person.png";
 import passwordimg from "../Assets/password.png";
 import { useNavigate } from "react-router-dom";
 function Login() {
-  // React States
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -32,10 +31,9 @@ function Login() {
     });
   };
 
-  // JSX code for login form
-  const renderForm = (
+  const login_page = (
     <div className="container">
-      <h1 className="title">Login</h1>
+      <h1 className="title">Sign in</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <div className="input-text">Username</div>
@@ -66,7 +64,7 @@ function Login() {
         </div>
       </form>
       <div className="signup-link-container">
-        <div className="show-pass-text">Doesn't have account?</div>
+        <div className="show-pass-text">New user?</div>
         <a href="/registration">Create account</a>
       </div>
     </div>
@@ -74,7 +72,7 @@ function Login() {
 
   return (
     <div className="app">
-      <div className="login-form">{renderForm}</div>
+      <div className="login-form">{login_page}</div>
     </div>
   );
 }
