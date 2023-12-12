@@ -185,7 +185,8 @@ export const Home = () => {
                       }
                     </div>
                     <div>
-                      {cityData.status === "inactive" && stars && <div className="starsImg">{calculateStars(cityData.points)}</div>}
+                      {cityData.status === "inactive" &&
+                        <div className="starsImg">{calculateStars(cityData.points)}</div>}
                     </div>
                   </Popup>
                 </Marker>
