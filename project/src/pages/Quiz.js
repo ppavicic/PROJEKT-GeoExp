@@ -32,11 +32,7 @@ export const Quiz = () => {
   const cityId = localStorage.getItem("city-id");
 
   useEffect(() => {
-    const requestBody = {
-      city_id: cityId,
-    };
     fetch(`/api/city/questions?city_id=${cityId}`, {
-      //change path
       method: "GET",
       headers: {
         Authorization: `${token}`,
@@ -51,54 +47,56 @@ export const Quiz = () => {
       }
     });
 
-    const storedAnswers = JSON.parse(localStorage.getItem("answers")) || {};
-    setSelectedAnswers(storedAnswers);
-  }, []);
+  }, [selectedAnswers]);
 
   const handleAnswer = (option) => {
-    setSelectedAnswers((prevSelectedAnswers) => ({
-      ...prevSelectedAnswers,
-      [currentQuestionIndex + 1]: {
-        id: currentQuestion.id,
-        answer: option,
-      },
-    }));
+    setSelectedAnswers((prevSelectedAnswers) => {
+      const updatedAnswers = {
+        ...prevSelectedAnswers,
+        [currentQuestionIndex + 1]: {
+          id: currentQuestion.id,
+          answer: option,
+        },
+      };
 
-    console.log(selectedAnswers);
-
-    localStorage.setItem(
-      "answers",
-      JSON.stringify({ ...selectedAnswers, [currentQuestion.id]: option })
-    );
+      localStorage.setItem("answers", JSON.stringify(updatedAnswers));
+      return updatedAnswers;
+    });
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      const requestBody = {
-        city_id: cityId,
-        questions: selectedAnswers,
-      };
-      console.log(requestBody);
-      localStorage.removeItem("city-id");
-      console.log(requestBody);
-      fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify({ requestBody }),
-      }).then((res) => {
-        if (res.status !== 200) {
-        } else {
-          res.json().then((data) => {
-            console.log("Response data:", data.info);
-            navigate("/home");
-          });
-        }
-      });
+      submitAnswers();
     }
   };
+
+  const submitAnswers = () => {
+    const savedAnswers = localStorage.getItem("answers");
+    const requestBody = {
+      city_id: cityId,
+      questions: Object.values(JSON.parse(savedAnswers)),
+    };
+    localStorage.removeItem("city-id");
+    localStorage.removeItem("answers");
+
+    fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify({ requestBody }),
+    }).then((res) => {
+      if (res.status !== 200) {
+      } else {
+        res.json().then((data) => {
+          console.log("Response data:", data);
+          navigate("/home");
+        });
+      }
+    });
+
+  }
 
   const currentQuestion = questions[currentQuestionIndex];
 
