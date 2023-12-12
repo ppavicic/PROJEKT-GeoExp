@@ -7,11 +7,11 @@ import pandaznanjabezoblacica from "../Assets/panda_znanja_bez_oblacica.png";
 import { useLocation } from "react-router-dom";
 
 function CityInfo() {
-  const location = useLocation();
+  /*const location = useLocation();
 
   const { cityData } = location.state || {};
   console.log(cityData);
-  localStorage.setItem("city-id", JSON.stringify(cityData.id));
+  localStorage.setItem("city-id", JSON.stringify(cityData.id));*/
   const navigate = useNavigate();
 
   /* function change_screen() {
@@ -56,33 +56,47 @@ function CityInfo() {
   const description = (
     <div className="full-page">
       <div class="information">
-        <div id="container1" class="container-desc">
-          <h1>{cityData.name}</h1>
-          <div id="data">
-            <h2>Description</h2>
-            <p>{cityData.description.text}</p>
+        <div id="container1" className="container-desc">
+          <header>
+            <h1>cityData.name</h1>
+          </header>
+          <div className="row">
+            <div id="data" className="leftcolumn">
+              <div className="details">
+                <h2>Description</h2>
+              </div>
+              <p>cityData.description.text</p>
+            </div>
+            <div id="data" className="rightcolumn1">
+              <div className="details">
+                <h2>Trivia</h2>
+              </div>
+              <p>cityData.trivia.value</p>
+            </div>
+            <div id="data" className="rightcolumn">
+              <div className="details">
+              <h2>Link</h2>
+              </div>
+              <a href="cityData.link.link">Više informacija</a>
+
+            </div>
           </div>
-          <div id="data">
-            <h2>Trivia</h2>
-            <p>{cityData.trivia.value}</p>
-          </div>
-          <div id="data">
-            <h2>Link</h2>
-            <a href={cityData.link.link}>Više informacija</a>
-          </div>
-          <div>
+
+          <footer>
             <button onClick={quiz_start} className="quiz-start">
               Pokreni kviz
             </button>
-          </div>
+          </footer>
         </div>
       </div>
+
       <div>
         <img
           id="panda"
           className="panda-img"
           onClick={show_background}
-          src={pandaznanja}></img>
+          src={pandaznanja}
+        ></img>
       </div>
     </div>
   );

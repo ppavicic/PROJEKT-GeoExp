@@ -1,21 +1,17 @@
 .container-desc {
-  display: flex;
+
   position: fixed;
-  bottom: 300px;
+  bottom: 210px;
   left: 15vw;
   width: 70vw;
   border: 3px solid;
   border-radius: 60px;
   background-color: white;
-  flex-direction: column;
-  overflow: hidden;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  height: 50vh;
+  
+  
 }
 
-.container-desc::-webkit-scrollbar {
+.leftcolumn::-webkit-scrollbar {
   display: none;
 }
 
@@ -28,20 +24,17 @@
   align-items: center;
 }
 
-#data {
-  margin: 20px;
-}
 
 .panda_pic {
   position: absolute;
-  left: 0;
+  left: 20px;
 }
 
 .panda-img {
-  left: 40px;
+  left: 10px;
   position: fixed;
-  bottom: 8vh;
-  height: 250px;
+  bottom: 0px;
+  height: 220px;
 }
 
 .information {
@@ -59,10 +52,133 @@
 }
 
 .full-page {
-  background-image: url("../Assets/bamboo.jpg");
+  background-image: url("../Assets/zagreb.jpg");
   height: 100vh;
   width: 100vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+header  {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#container1 *{
+  
+  box-sizing: border-box;
+  
+}
+
+.leftcolumn {   
+  float: left;
+  width: 62.5%;
+  height: 320px;
+  overflow: hidden;
+  margin-left: 2.5%;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rightcolumn1 {
+  float: left;
+  margin-left: 2.5%;
+  margin-bottom: 20px;
+  width: 30%;
+  height: 150px;
+  padding-left: 0px;  
+}
+.rightcolumn {
+  float: left;
+  margin-left: 2.5%;
+  width: 30%;
+  height: 150px;
+  padding-left: 0px;
+}
+
+footer {
+  text-align: center;
+  
+  
+  margin-top: 10px;
+  border-radius: 60px;
+
+
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+  
+}
+
+.details h2{
+  background-color: #ddd;
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0px 15px;
+}
+
+.details{
+  display: flex;
+  justify-content: center;
+}
+
+
+#data{
+  
+  border: 2px solid black;
+  color: black;
+  border-radius: 60px;
+}
+
+header h1{
+  margin: 15px;
+  background-color: #ddd;
+  border: 2px solid black;
+  border-radius: 30px;
+  color: black;
+  padding: 5px 15px;
+}
+
+
+.quiz-start {
+  background-color:  #ddd;;
+  border: 2px solid black;
+  border-radius: 30px;
+  box-shadow: black 4px 4px 0 0;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.quiz-start:hover {
+  background-color: #fff;
+}
+
+.quiz-start:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .quiz-start {
+    min-width: 120px;
+    padding: 0 25px;
+  }
 }
