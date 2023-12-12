@@ -32,7 +32,6 @@ module Api
     def check_answers # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       data = { counter: 0 }
       questions_answers.each do |entry|
-        binding.pry
         if answer(entry['id']).eql?(entry['answer'])
           data[:counter] += 1
           data[question(entry['id']).text] = 'true'
