@@ -77,7 +77,8 @@ export const Quiz = () => {
       questions: Object.values(JSON.parse(savedAnswers)),
     };
     localStorage.removeItem("city-id");
-    
+    localStorage.removeItem("answers");
+
     fetch("/api/submit", {
       method: "POST",
       headers: {
