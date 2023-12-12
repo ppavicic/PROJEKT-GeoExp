@@ -59,14 +59,16 @@ export const Quiz = () => {
     setSelectedAnswers((prevSelectedAnswers) => ({
       ...prevSelectedAnswers,
       [currentQuestionIndex + 1]: {
-        id: currentQuestionIndex + 1,
+        id: currentQuestion.id,
         answer: option,
       },
     }));
 
+    console.log(selectedAnswers);
+
     localStorage.setItem(
       "answers",
-      JSON.stringify({ ...selectedAnswers, [currentQuestionIndex + 1]: option })
+      JSON.stringify({ ...selectedAnswers, [currentQuestion.id]: option })
     );
 
     if (currentQuestionIndex < questions.length - 1) {
@@ -74,7 +76,7 @@ export const Quiz = () => {
     } else {
       const requestBody = {
         city_id: cityId,
-        questions: Object.values(selectedAnswers),
+        questions: selectedAnswers,
       };
       console.log(requestBody);
       localStorage.removeItem("city-id");

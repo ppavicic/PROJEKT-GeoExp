@@ -160,8 +160,7 @@ export const Home = () => {
                   position={[cityData.city.latitude, cityData.city.longitude]}
                   icon={
                     cityData.status === "active" ? activeIcon : inactiveIcon
-                  }
-                  interactive={cityData.status === "active"}>
+                  }>
                   <Popup>
                     <div key={cityData.id}>
                       {cityData.status === "active" && (
