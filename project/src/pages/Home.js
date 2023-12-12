@@ -105,37 +105,42 @@ export const Home = () => {
       });
   };
 
-  let stars = null;
-  let points = cities.score;
 
 
-  if (points == 3) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  } else if (points == 2) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  } else if (points == 1) {
-    stars = (
-      <div className="stars-container">
-        <img src={starImg} alt="Star" />
-      </div>
-    );
-  } else if (points == 0) {
-    <div className="stars-container">
+  const calculateStars = (points) => {
+    let stars;
 
-      Nema točnih odgovora
-    </div>
-  }
+    if (points === 3) {
+      stars = (
+        <div className="stars-container">
+          <img src={starImg} alt="Star" />
+          <img src={starImg} alt="Star" />
+          <img src={starImg} alt="Star" />
+        </div>
+      );
+    } else if (points === 2) {
+      stars = (
+        <div className="stars-container">
+          <img src={starImg} alt="Star" />
+          <img src={starImg} alt="Star" />
+        </div>
+      );
+    } else if (points === 1) {
+      stars = (
+        <div className="stars-container">
+          <img src={starImg} alt="Star" />
+        </div>
+      );
+    } else if (points === 0) {
+      stars = (
+        <div className="stars-container">
+          Nema točnih odgovora
+        </div>
+      );
+    }
+
+    return stars;
+  };
 
 
   console.log(cities.data);
@@ -170,18 +175,18 @@ export const Home = () => {
                   interactive={cityData.status === "active"}
                 >
                   <Popup>
-                    <div>
-                      {cityData.status &&
+                    <div key={cityData.id}>
+                      {cityData.status === "active" &&
                         <Link style={{ textDecoration: 'none' }}
                           to={`/cityInfo/${cityData.city.name}`}
-                          state={{ cityData }} // Pass cityData to CityInfo
+                          state={{ cityData: cityData.city }} // Pass cityData to CityInfo
                         >
                           <button className="button-87">Informacije o gradu</button>
                         </Link>
                       }
                     </div>
                     <div>
-                      {!cityData.status && stars && <div className="starsImg">{stars}</div>}
+                      {cityData.status === "inactive" && stars && <div className="starsImg">{calculateStars(cityData.points)}</div>}
                     </div>
                   </Popup>
                 </Marker>
