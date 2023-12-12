@@ -64,11 +64,11 @@ function CityInfo() {
           </div>
           <div id="data">
             <h2>Trivia</h2>
-            <p>{cityData.trivia.value}</p>
+            {/* <p>{cityData.trivia.value}</p>*/}
           </div>
           <div id="data">
             <h2>Link</h2>
-            <a href={cityData.link.link}>Više informacija</a>
+            {/*  <a href={cityData.link.link}>Više informacija</a>*/}
           </div>
           <div>
             <button onClick={quiz_start} className="quiz-start">
