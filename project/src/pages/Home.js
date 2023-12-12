@@ -27,6 +27,8 @@ export const Home = () => {
     options: {},
   });
 
+  console.log(cities);
+
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
   const worldBounds = [
@@ -108,34 +110,16 @@ export const Home = () => {
 
 
   const calculateStars = (points) => {
-    let stars;
-
-    if (points === 3) {
-      stars = (
-        <div className="stars-container">
-          <img src={starImg} alt="Star" />
-          <img src={starImg} alt="Star" />
-          <img src={starImg} alt="Star" />
-        </div>
+    const stars = [];
+    console.log(points);
+    if (points === 0) {
+      return (
+        "Nema točnih odgovora"
       );
-    } else if (points === 2) {
-      stars = (
-        <div className="stars-container">
-          <img src={starImg} alt="Star" />
-          <img src={starImg} alt="Star" />
-        </div>
-      );
-    } else if (points === 1) {
-      stars = (
-        <div className="stars-container">
-          <img src={starImg} alt="Star" />
-        </div>
-      );
-    } else if (points === 0) {
-      stars = (
-        <div className="stars-container">
-          Nema točnih odgovora
-        </div>
+    }
+    for (let i = 0; i < points; i++) {
+      stars.push(
+        <img key={i} src={starImg} alt="Star" />
       );
     }
 
@@ -143,7 +127,6 @@ export const Home = () => {
   };
 
 
-  console.log(cities.data);
   if (cities.data !== undefined) {
     return (
       <div>
@@ -184,9 +167,9 @@ export const Home = () => {
                         </Link>
                       }
                     </div>
-                    <div>
+                    <div key={cityData.id}>
                       {cityData.status === "inactive" &&
-                        <div className="starsImg">{calculateStars(cityData.points)}</div>}
+                        <div key={cityData.id} className="stars-container">{calculateStars(cityData.score)}</div>}
                     </div>
                   </Popup>
                 </Marker>
