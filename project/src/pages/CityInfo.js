@@ -26,13 +26,17 @@ function CityInfo() {
   }*/
   function show_background() {
     const first = document.getElementById("container1");
+    const second = document.getElementById("container2");
+
     const slika = document.getElementById("panda");
 
     if ((first !== null) & (first.className === "container-desc")) {
       first.className = "nevidis";
+      second.className = "photo-div"
       slika.src = pandaznanjabezoblacica;
     } else {
       first.className = "container-desc";
+      second.className = "nevidis";
       slika.src = pandaznanja;
     }
   }
@@ -87,8 +91,9 @@ function CityInfo() {
             </button>
           </footer>
         </div>
+        <div id="container2" className="neivdis"></div>
       </div>
-
+      
       <div>
         <img
           id="panda"
