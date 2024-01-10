@@ -1,120 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
 
-
 .bigContainer {
-   position: relative;
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
- 
- .map-container {
-   height: 50vh;
-   width: 50%;
-   margin: 30px;
-   border: 2px solid #333;
-   border-radius: 10px;
-   overflow: hidden;
-   position: relative;
- }
- 
- .image-container-Panda {
-   position: absolute;
-   top: 60%;
-   left: 17%;
-   transform: translate(-50%, -50%);
-   z-index: 9999;
-   max-width: 90%; /* Adjust the maximum width of the container */
-   max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 300px;
-   height: 350px;
- }
- 
- .image-container-Panda img {
-   width: 100%; /* Ensure the image fills its container */
-   height: auto; /* Maintain aspect ratio */
-   display: block;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
- 
+
+.map-container {
+  height: 50vh;
+  width: 50%;
+  margin: 30px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container-Panda {
+  position: absolute;
+  top: 60%;
+  left: 17%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-width: 90%; /* Adjust the maximum width of the container */
+  max-height: 90vh; /* Adjust the maximum height of the container */
+  width: 300px;
+  height: 350px;
+}
+
+.image-container-Panda img {
+  width: 100%; /* Ensure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
 .image-container-Suitcase {
-   position: absolute;
-   top: 76%;
-   right: 13%;
-   transform: translate(-50%, -50%);
-   z-index: 9999;
-   max-width: 90%; /* Adjust the maximum width of the container */
-   max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 160px;
-   height: 230px;
- }
- 
- .image-container-Suitcase img {
-   width: 100%; /* Ensure the image fills its container */
-   height: auto; /* Maintain aspect ratio */
-   display: block;
+  position: absolute;
+  top: 76%;
+  right: 13%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-width: 90%; /* Adjust the maximum width of the container */
+  max-height: 90vh; /* Adjust the maximum height of the container */
+  width: 160px;
+  height: 230px;
+}
+
+.image-container-Suitcase img {
+  width: 100%; /* Ensure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
 }
 .image-container-Ticket {
-   position: absolute;
-   top: 30%;
-   right: 10%;
-   transform: translate(-50%, -50%);
-   z-index: 9999;
-   max-width: 90%; /* Adjust the maximum width of the container */
-   max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 220px;
-   height: 280px;
- }
- 
- .image-container-Ticket img {
-   width: 100%; /* Ensure the image fills its container */
-   height: auto; /* Maintain aspect ratio */
-   display: block;
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-width: 90%; /* Adjust the maximum width of the container */
+  max-height: 90vh; /* Adjust the maximum height of the container */
+  width: 220px;
+  height: 280px;
+}
+
+.image-container-Ticket img {
+  width: 100%; /* Ensure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
 }
 .image-container-ProfilePic {
-   position: absolute;
-   top: 10%;
-   right: -3%;
-   transform: translate(-50%, -50%);
-   z-index: 9999;
-   max-width: 90%; /* Adjust the maximum width of the container */
-   max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 120px;
-   height: 120px;
- }
- 
- .image-container-ProfilePic img {
-   width: 100%; /* Ensure the image fills its container */
-   height: auto; /* Maintain aspect ratio */
-   display: block;
+  position: absolute;
+  top: 10%;
+  right: -3%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-width: 90%; /* Adjust the maximum width of the container */
+  max-height: 90vh; /* Adjust the maximum height of the container */
+  width: 120px;
+  height: 120px;
+}
+
+.image-container-ProfilePic img {
+  width: 100%; /* Ensure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
 }
 .image-container-ProfilePic:hover img {
-   transform: scale(1.2); /* Set the scale to 1 to prevent resizing on hover */
- }
+  transform: scale(1.2); /* Set the scale to 1 to prevent resizing on hover */
+}
 
- .image-container-Sign {
-   position: absolute;
-   top:58%;
-   right: 7%;
-   transform: translate(-50%, -50%);
-   z-index: 500;
-   max-width: 90%; /* Adjust the maximum width of the container */
-   max-height: 90vh; /* Adjust the maximum height of the container */
-   width: 250px;
-   height: 300px;
- }
- 
- .image-container-Sign img {
-   width: 100%; /* Ensure the image fills its container */
-   height: auto; /* Maintain aspect ratio */
-   display: block;
+.image-container-Sign {
+  position: absolute;
+  top: 58%;
+  right: 7%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  max-width: 90%; /* Adjust the maximum width of the container */
+  max-height: 90vh; /* Adjust the maximum height of the container */
+  width: 250px;
+  height: 300px;
+}
+
+.image-container-Sign img {
+  width: 100%; /* Ensure the image fills its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
 }
 
 .leaflet-container {
-   height: 100%;
-   width: 100%;
- 
+  height: 100%;
+  width: 100%;
 }
 
 /* Boje ploča mape */
@@ -122,70 +120,62 @@
   filter: brightness(120%); /* Dodajte svjetlinu pločama za dodatne boje */
 }
 
-
 .titlePic {
-   width: 600px;
-   height: 240px;
+  width: 600px;
+  height: 240px;
 }
-
-
-
- 
- 
 
 .navbar {
-   
-   display: flex;
-   justify-content: space-between;
-   background-color: grey; /* Background color of the navbar */
-   color: white; /* Text color for navbar items */
-   list-style-type: none;
-   padding: 10px;
-   margin: 0%;
-   display: none;
+  display: flex;
+  justify-content: space-between;
+  background-color: grey; /* Background color of the navbar */
+  color: white; /* Text color for navbar items */
+  list-style-type: none;
+  padding: 10px;
+  margin: 0%;
+  display: none;
 }
-
 
 .navbar-item {
-   margin: 0;
-   padding: 0;
- }
- 
-.username {
-   flex: 1; 
-   text-align: center;
+  margin: 0;
+  padding: 0;
 }
- 
+
+.username {
+  flex: 1;
+  text-align: center;
+}
+
 .logoutbutton {
-   text-align: right;
+  text-align: right;
 }
 
 .stars-container {
-   display: flex;
-   flex-direction: row; 
-   align-items: center; 
-   flex-wrap: nowrap;
- }
- 
- .stars-container img {
-   margin: 3px; 
-   height: 30px;
-   width: 30px;
- }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+}
 
- @media screen and (max-width: 800px) {
+.stars-container img {
+  margin: 3px;
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 800px) {
   .image-container-Sign {
-      display: none; /* Skriva elemente na mobilnim uređajima */
+    display: none; /* Skriva elemente na mobilnim uređajima */
   }
 }
 @media screen and (max-width: 800px) {
   .image-container-Ticket {
-      display: none; /* Skriva elemente na mobilnim uređajima */
+    display: none; /* Skriva elemente na mobilnim uređajima */
   }
 }
 @media screen and (max-width: 800px) {
   .image-container-Suitcase {
-      display: none; /* Skriva elemente na mobilnim uređajima */
+    display: none; /* Skriva elemente na mobilnim uređajima */
   }
 }
 
@@ -201,7 +191,12 @@
   border: 0px;
   font-weight: 700;
   box-shadow: 0px 0px 14px -7px #f09819;
-  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  background-image: linear-gradient(
+    45deg,
+    #ff512f 0%,
+    #f09819 51%,
+    #ff512f 100%
+  );
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -218,10 +213,16 @@
 .button-87:active {
   transform: scale(0.95);
 }
- 
+
 .no-answer-message {
   /* Stilizirajte poruku "Nema točnih odgovora" po vašim željama */
   font-size: 18px;
   /* Dodajte ostale stilove po potrebi */
 }
- 
+
+.sadFace {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

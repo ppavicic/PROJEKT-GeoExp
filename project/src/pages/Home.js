@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
-import { StamenTileLayer } from 'leaflet';
+import { StamenTileLayer } from "leaflet";
 import pandaImg from "../Assets/panda7.png";
 import titleImg from "../Assets/TITLE.png";
 import suitcaseImg from "../Assets/suitcase.png";
@@ -14,21 +14,19 @@ import ticketImg from "../Assets/ticket.png";
 import profileImg from "../Assets/profilePic.png";
 import signImg from "../Assets/sign.png";
 import starImg from "../Assets/star.png";
-import { Link } from 'react-router-dom';
+import sadFaceImg from "../Assets/sadFace.png";
+import { Link } from "react-router-dom";
+import redIcon from "../Assets/redIcon.png";
 
 export const Home = () => {
-  document.body.style.backgroundColor = '#f0f0f0';
+  document.body.style.backgroundColor = "#f0f0f0";
   const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [userName, setUsername] = useState("");
 
-
   const LeafIcon = L.Icon.extend({
     options: {},
   });
-
-  console.log(cities);
-
 
   const initialCenter = [45.8, 15.97]; //inicijalna pozicija karte
   const worldBounds = [
@@ -37,15 +35,13 @@ export const Home = () => {
   ];
 
   const greenIcon = new LeafIcon({
-    iconUrl:
-      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C2ecc71&chf=a,s,ee00FFFF",
+    iconUrl: require("../Assets/greenIcon.png"),
     iconSize: [25, 30],
     iconAnchor: [12.5, 30],
   });
 
   const redIcon = new LeafIcon({
-    iconUrl:
-      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7Cff0000&chf=a,s,ee00FFFF",
+    iconUrl: require("../Assets/redIcon.png"),
     iconSize: [25, 30],
     iconAnchor: [12.5, 30],
   });
@@ -73,7 +69,7 @@ export const Home = () => {
       }
     });
 
-    const quizToken = localStorage.getItem("quizToken");  //ovo mozda bude trebalo izbrisat
+    const quizToken = localStorage.getItem("quizToken"); //ovo mozda bude trebalo izbrisat
     if (quizToken) {
       setTimeout(() => {
         window.alert(quizToken);
@@ -107,25 +103,23 @@ export const Home = () => {
       });
   };
 
-
-
   const calculateStars = (points) => {
     const stars = [];
     console.log(points);
-    if (points === 0) {
+    if (points == 0) {
       return (
-        "Nema točnih odgovora"
+        <div className="sadFace">
+          <div>Nema točnih odgovora </div>
+          <img src={sadFaceImg} alt="sad" />
+        </div>
       );
     }
     for (let i = 0; i < points; i++) {
-      stars.push(
-        <img key={i} src={starImg} alt="Star" />
-      );
+      stars.push(<img key={i} src={starImg} alt="Star" />);
     }
 
     return stars;
   };
-
 
   if (cities.data !== undefined) {
     return (
@@ -152,31 +146,36 @@ export const Home = () => {
 
               {cities.data.map((cityData) => (
                 <Marker
-                  key={cityData.id}
+                  key={cityData.city.id}
                   position={[cityData.city.latitude, cityData.city.longitude]}
-                  icon={cityData.status === "active" ? activeIcon : inactiveIcon}
-                >
+                  icon={
+                    cityData.status === "active" ? activeIcon : inactiveIcon
+                  }>
                   <Popup>
-                    <div key={cityData.id}>
-                      {cityData.status === "active" &&
-                        <Link style={{ textDecoration: 'none' }}
+                    <div>
+                      {cityData.status === "active" && (
+                        <Link
+                          style={{ textDecoration: "none" }}
                           to={`/cityInfo/${cityData.city.name}`}
                           state={{ cityData: cityData.city }} // Pass cityData to CityInfo
                         >
-                          <button className="button-87">Informacije o gradu</button>
+                          <button className="button-87">
+                            Informacije o gradu
+                          </button>
                         </Link>
-                      }
+                      )}
                     </div>
-                    <div key={cityData.id}>
-                      {cityData.status === "inactive" &&
-                        <div key={cityData.id} className="stars-container">{calculateStars(cityData.score)}</div>}
+                    <div>
+                      {cityData.status === "inactive" && (
+                        <div className="stars-container">
+                          {calculateStars(cityData.score)}
+                        </div>
+                      )}
                     </div>
                   </Popup>
                 </Marker>
               ))}
             </MapContainer>
-
-
           </div>
           <div className="image-container-Panda">
             <img src={pandaImg} alt="Panda pic" className="PandaPic" />
@@ -198,7 +197,7 @@ export const Home = () => {
             <img src={signImg} alt="Sign pic" className="signPic" />
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 };

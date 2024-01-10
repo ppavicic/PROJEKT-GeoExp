@@ -30,6 +30,7 @@ export const Quiz = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const cityId = localStorage.getItem("city-id");
+  const [initial, setInitial] = useState([true]);
 
   useEffect(() => {
     fetch(`/api/city/questions?city_id=${cityId}`, {
@@ -46,8 +47,7 @@ export const Quiz = () => {
         });
       }
     });
-
-  }, [selectedAnswers]);
+  }, []);
 
   const handleAnswer = (option) => {
     setSelectedAnswers((prevSelectedAnswers) => {
@@ -76,6 +76,7 @@ export const Quiz = () => {
       city_id: cityId,
       questions: Object.values(JSON.parse(savedAnswers)),
     };
+    console.log(requestBody);
     localStorage.removeItem("city-id");
     localStorage.removeItem("answers");
 
@@ -95,8 +96,7 @@ export const Quiz = () => {
         });
       }
     });
-
-  }
+  };
 
   const currentQuestion = questions[currentQuestionIndex];
 
