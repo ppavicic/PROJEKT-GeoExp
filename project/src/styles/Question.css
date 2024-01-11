@@ -1,4 +1,4 @@
-.app {
+.app-question{
   font-family: sans-serif;
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
   gap: 20px;
   height: 100vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-color: antiquewhite;
+  background-color: f0f0f0;
 }
 
 input[type="text"],
@@ -59,7 +59,7 @@ input[type="submit"]:hover {
   flex-direction: column;
 }
 .login-form-Question {
-  background-color: #cccc;
+  background-color: antiquewhite;
   border-radius: 5px;
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -119,4 +119,23 @@ input[type="submit"]:hover {
   color: black;
   border-radius: 5px;
   background-color: whitesmoke;
+}
+.image-container-Panda-quiz {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 420px;
+  height: 480px;
+}
+
+.image-container-Panda-quiz img {
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire container, maintaining aspect ratio */
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+  .image-container-Panda-quiz {
+    display: none; /* Skriva elemente na mobilnim uređajima */
+  }
 }

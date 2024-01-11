@@ -33,10 +33,10 @@ function Login() {
 
   const login_page = (
     <div className="container">
-      <h1 className="title">Sign in</h1>
+      <h1 className="title">Prijavi se</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
-          <div className="input-text">Username</div>
+          <div className="input-text">Korisničko ime</div>
           <div className="input-container">
             <img className="login-icons" src={user}></img>
             <input
@@ -47,7 +47,7 @@ function Login() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="input-text">Password</div>
+          <div className="input-text">Lozinka</div>
           <div className="input-container">
             <img className="login-icons" src={passwordimg}></img>
             <input
@@ -60,12 +60,12 @@ function Login() {
           </div>
         </div>
         <div className="button-container">
-          <button className="button">Login</button>
+          <button className="button">Prijava</button>
         </div>
       </form>
       <div className="signup-link-container">
-        <div className="show-pass-text">New user?</div>
-        <a href="/registration">Create account</a>
+        <div className="show-pass-text">Novi korisnik?</div>
+        <a href="/registration">Kreiraj</a>
       </div>
     </div>
   );

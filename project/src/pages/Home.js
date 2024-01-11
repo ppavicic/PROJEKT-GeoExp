@@ -8,7 +8,7 @@ import { QRCodePopup } from "./QRCodePopup";
 import { URL } from "./Constants";
 import { StamenTileLayer } from "leaflet";
 import pandaImg from "../Assets/panda7.png";
-import titleImg from "../Assets/TITLE.png";
+import titleImg from "../Assets/title2.png";
 import suitcaseImg from "../Assets/suitcase.png";
 import ticketImg from "../Assets/ticket.png";
 import profileImg from "../Assets/profilePic.png";
@@ -36,13 +36,13 @@ export const Home = () => {
 
   const greenIcon = new LeafIcon({
     iconUrl: require("../Assets/greenIcon.png"),
-    iconSize: [25, 30],
+    iconSize: [25, 35],
     iconAnchor: [12.5, 30],
   });
 
   const redIcon = new LeafIcon({
     iconUrl: require("../Assets/redIcon.png"),
-    iconSize: [25, 30],
+    iconSize: [25, 35],
     iconAnchor: [12.5, 30],
   });
 
@@ -124,12 +124,9 @@ export const Home = () => {
   if (cities.data !== undefined) {
     return (
       <div>
-        <ul className="navbar">
-          <li className="navbar-item username">{userName}</li>
-          <li className="navbar-item logoutbutton">
-            <button onClick={handleSubmit}>ODJAVA</button>
-          </li>
-        </ul>
+        <div className="title-container">
+          <img src={titleImg} alt="Title Image" class="title-image"></img>
+        </div>
 
         <div className="bigContainer">
           <div className="map-container">
@@ -159,9 +156,15 @@ export const Home = () => {
                           to={`/cityInfo/${cityData.city.name}`}
                           state={{ cityData: cityData.city }} // Pass cityData to CityInfo
                         >
-                          <button className="button-87">
-                            Informacije o gradu
-                          </button>
+                          <div>
+                            <h2 style={{ color: 'black', textAlign: 'center' }}>Informacije o gradu</h2>
+                            <h4>Klikom na gumb možete saznati zanimljivosti o gradu {cityData.city.name},
+                              a nakon toga odigrati kviz!</h4>
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                              <button style={{ textAlign: 'center' }} className="button-87">Kliknite za dalje</button>
+                            </div>
+                          </div>
+
                         </Link>
                       )}
                     </div>

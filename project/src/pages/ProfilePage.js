@@ -30,6 +30,11 @@ export const ProfilePage = () => {
       trophy = <img src={bronzeImg} alt="Bronze Trophy" />;
    }
 
+   const handleLogout = () => {
+      localStorage.clear();
+      window.location.reload();
+   };
+
 
    useEffect(() => {
       fetch("/api/user/points", {
@@ -79,6 +84,7 @@ export const ProfilePage = () => {
             </div>
          </div>
          <button className="btn2 btn-dark" onClick={goToHomePage}>Glavna stranica</button>
+         <button className="btn2 btn-dark" onClick={handleLogout}> Odjavi se </button>
       </div >
    );
 };

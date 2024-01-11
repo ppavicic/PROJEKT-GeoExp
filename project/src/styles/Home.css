@@ -3,7 +3,7 @@
 
 .bigContainer {
   position: relative;
-  height: 100vh;
+  height:70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@
 
 .image-container-Suitcase {
   position: absolute;
-  top: 76%;
+  top: 85%;
   right: 13%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -56,7 +56,7 @@
 }
 .image-container-Ticket {
   position: absolute;
-  top: 30%;
+  top: 25%;
   right: 10%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -73,7 +73,7 @@
 }
 .image-container-ProfilePic {
   position: absolute;
-  top: 10%;
+  top: -15%;
   right: -3%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -163,17 +163,17 @@
   width: 30px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .image-container-Sign {
     display: none; /* Skriva elemente na mobilnim uređajima */
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .image-container-Ticket {
     display: none; /* Skriva elemente na mobilnim uređajima */
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .image-container-Suitcase {
     display: none; /* Skriva elemente na mobilnim uređajima */
   }
@@ -225,4 +225,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.title-image{
+  margin-top: 50px;
+  width: 550px;
 }

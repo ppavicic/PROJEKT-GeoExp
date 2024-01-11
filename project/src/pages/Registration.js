@@ -31,10 +31,10 @@ function Registration() {
 
   const registration_page = (
     <div className="container">
-      <h1 className="title">Sign up</h1>
+      <h1 className="title">Rgeistriraj se</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
-          <div className="input-text">Type your username</div>
+          <div className="input-text">Korisničko ime</div>
           <div className="input-container">
             <img className="login-icons" src={user}></img>
             <input
@@ -45,7 +45,7 @@ function Registration() {
               required
             />
           </div>
-          <div className="input-text">Type your password</div>
+          <div className="input-text">Lozinka</div>
           <div className="input-container">
             <img className="login-icons" src={passwordimg}></img>
             <input
@@ -65,15 +65,15 @@ function Registration() {
               value={showPassword}
               onChange={() => setShowPassword((prev) => !prev)}
             />
-            <h className="show-pass-text">Show password</h>
+            <h className="show-pass-text">Prikaži lozinku</h>
           </div>
         </div>
         <div className="button-container">
-          <button className="button">Sign in</button>
+          <button className="button">Registracija</button>
         </div>
       </form>
       <div className="signup-link-container">
-        <div className="show-pass-text">Already have account?</div>
+        <div className="show-pass-text">Već imate račun?</div>
         <a href="/">Login</a>
       </div>
     </div>

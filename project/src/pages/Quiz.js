@@ -3,6 +3,7 @@ import Question from "./Question";
 import { useNavigate } from "react-router-dom";
 
 export const Quiz = () => {
+  document.body.style.backgroundColor = "#f0f0f0";
   //   const questions = [
   //     {
   //       id: 1,
