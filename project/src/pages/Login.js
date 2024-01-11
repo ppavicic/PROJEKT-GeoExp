@@ -20,7 +20,7 @@ function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session }),
     }).then((res) => {
-      if (res.status !== 200) {
+      if (res.status !== 201) {
         setShowErrMsg(true);
       } else {
         res.json().then((data) => {
@@ -70,10 +70,11 @@ function Login() {
         <div className="show-pass-text">Novi korisnik?</div>
         <a href="/registration">Kreiraj</a>
       </div>
-      {showErrMsg &&
+      {showErrMsg && (
         <div className="error-msg-div">
           <div className="error-msg">Neispravni podaci za prijavu</div>
-        </div>}
+        </div>
+      )}
     </div>
   );
 
