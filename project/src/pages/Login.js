@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
 import "../styles/Login.css";
 import user from "../Assets/person.png";
 import passwordimg from "../Assets/password.png";
 import { useNavigate } from "react-router-dom";
+import titleImg from "../Assets/title2.png";
+
 function Login() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showErrMsg, setShowErrMsg] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,12 +20,14 @@ function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session }),
     }).then((res) => {
-      if (res.status !== 201) {
+      if (res.status !== 200) {
+        setShowErrMsg(true);
       } else {
         res.json().then((data) => {
           console.log("Response data:", data.session.token, data);
           localStorage.setItem("token", data.session.token);
           localStorage.setItem("user", data.session.user.name);
+          setShowErrMsg(false);
           navigate("/home");
         });
       }
@@ -33,7 +36,7 @@ function Login() {
 
   const login_page = (
     <div className="container">
-      <h1 className="title">Prijavi se</h1>
+      <h1 className="myTitle">Prijavi se</h1>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <div className="input-text">Korisničko ime</div>
@@ -63,15 +66,22 @@ function Login() {
           <button className="button">Prijava</button>
         </div>
       </form>
-      <div className="signup-link-container">
+      <div className="login-signup-link-container">
         <div className="show-pass-text">Novi korisnik?</div>
         <a href="/registration">Kreiraj</a>
       </div>
+      {showErrMsg &&
+        <div className="error-msg-div">
+          <div className="error-msg">Neispravni podaci za prijavu</div>
+        </div>}
     </div>
   );
 
   return (
     <div className="app">
+      <div className="mytitle-container">
+        <img src={titleImg} alt="Title Image" className="mytitle-image"></img>
+      </div>
       <div className="login-form">{login_page}</div>
     </div>
   );
