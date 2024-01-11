@@ -22,17 +22,40 @@ export const ProfilePage = () => {
 
    let trophy = null;
 
-   if (points.points >= 100) {
+   if (points.points >= 20) {
       trophy = <img src={goldImg} alt="Gold Trophy" />;
-   } else if (points.points >= 50 && points.points < 100) {
+   } else if (points.points >= 10 && points.points < 20) {
       trophy = <img src={silverImg} alt="Silver Trophy" />;
-   } else if (points.points >= 3 && points.points < 50) {
+   } else if (points.points >= 3 && points.points < 10) {
       trophy = <img src={bronzeImg} alt="Bronze Trophy" />;
    }
 
    const handleLogout = () => {
-      localStorage.clear();
-      window.location.reload();
+
+
+      const token = localStorage.getItem("token");
+
+      fetch("/api/session", {
+         method: "DELETE",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+         },
+      })
+         .then((res) => {
+            if (res.status === 204) {
+               localStorage.removeItem("token");
+               localStorage.removeItem("user");
+               navigate("/");
+            } else {
+               console.error("Error");
+            }
+         })
+         .catch((error) => {
+            console.error("Error deleting session:", error);
+         });
+
+
    };
 
 

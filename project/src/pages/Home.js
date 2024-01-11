@@ -78,30 +78,6 @@ export const Home = () => {
     }
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const token = localStorage.getItem("token");
-
-    fetch("/api/session", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 204) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          navigate("/");
-        } else {
-          console.error("Error");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting session:", error);
-      });
-  };
 
   const calculateStars = (points) => {
     const stars = [];
@@ -125,7 +101,7 @@ export const Home = () => {
     return (
       <div>
         <div className="title-container">
-          <img src={titleImg} alt="Title Image" class="title-image"></img>
+          <img src={titleImg} alt="Title Image" className="title-image"></img>
         </div>
 
         <div className="bigContainer">
@@ -158,7 +134,7 @@ export const Home = () => {
                         >
                           <div>
                             <h2 style={{ color: 'black', textAlign: 'center' }}>Informacije o gradu</h2>
-                            <h4>Klikom na gumb možete saznati zanimljivosti o gradu {cityData.city.name},
+                            <h4 style={{ color: 'gray', textAlign: 'center' }}>Klikom na gumb možete saznati zanimljivosti o gradu {cityData.city.name},
                               a nakon toga odigrati kviz!</h4>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                               <button style={{ textAlign: 'center' }} className="button-87">Kliknite za dalje</button>
