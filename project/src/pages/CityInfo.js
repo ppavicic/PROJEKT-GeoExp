@@ -20,7 +20,7 @@ function CityInfo() {
 
   const description = (
     <div className="full-page">
-      <div class="information">
+      <div className="information">
         <div id="container1" className="container-desc">
           <header>
             <h1>{cityData.name}</h1>

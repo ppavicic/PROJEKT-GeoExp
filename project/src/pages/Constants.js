@@ -1,1 +1,1 @@
-export const URL = 'http://localhost:80';
+export const URL = 'https://geo-exp-backend.onrender.com';

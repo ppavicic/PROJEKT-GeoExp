@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Question from "./Question";
 import { useNavigate } from "react-router-dom";
+import { URL } from "./Constants";
 
 export const Quiz = () => {
   document.body.style.backgroundColor = "#f0f0f0";
@@ -25,7 +26,7 @@ export const Quiz = () => {
   //     },
   //   ];
 
-  const [questions, setQuestions] = useState([]); 
+  const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export const Quiz = () => {
   const [initial, setInitial] = useState([true]);
 
   useEffect(() => {
-    fetch(`/api/city/questions?city_id=${cityId}`, {
+    fetch(`${URL}/api/city/questions?city_id=${cityId}`, {
       method: "GET",
       headers: {
         Authorization: `${token}`,
@@ -81,7 +82,7 @@ export const Quiz = () => {
     localStorage.removeItem("city-id");
     localStorage.removeItem("answers");
 
-    fetch("/api/submit", {
+    fetch(`${URL}/api/submit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,11 +101,11 @@ export const Quiz = () => {
   };
 
   const currentQuestion = questions[currentQuestionIndex];
-  const shuffle = (array) => { 
+  const shuffle = (array) => {
     return array.map((a) => ({ sort: Math.random(), value: a }))
-        .sort((a, b) => a.sort - b.sort)
-        .map((a) => a.value); 
-}; 
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
+  };
   if (currentQuestion !== undefined) {
     return (
       <div className="">

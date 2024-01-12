@@ -4,6 +4,7 @@ import user from "../Assets/person.png";
 import passwordimg from "../Assets/password.png";
 import { useNavigate } from "react-router-dom";
 import titleImg from "../Assets/title2.png";
+import { URL } from "./Constants";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const session = { name, password };
-    fetch("/api/session", {
+    fetch(`${URL}/api/session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session }),

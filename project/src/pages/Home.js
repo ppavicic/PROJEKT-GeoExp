@@ -54,8 +54,7 @@ export const Home = () => {
     //request za dohvat gradova od usera
     const userName = localStorage.getItem("user");
     setUsername(userName);
-
-    fetch("/api/user/cities", {
+    fetch(`${URL}/api/user/cities`, {
       method: "GET",
       headers: {
         Authorization: `${token}`, // Include the token in the Authorization header

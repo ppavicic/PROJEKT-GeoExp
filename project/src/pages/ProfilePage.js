@@ -6,6 +6,7 @@ import silverImg from "../Assets/silver.png";
 import bronzeImg from "../Assets/bronze.png";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { URL } from "./Constants";
 
 export const ProfilePage = () => {
   document.body.style.backgroundColor = "#white";
@@ -34,8 +35,7 @@ export const ProfilePage = () => {
 
   const handleLogout = () => {
     const token = localStorage.getItem("token");
-
-    fetch("/api/session", {
+    fetch(`${URL}/api/session`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export const ProfilePage = () => {
   };
 
   useEffect(() => {
-    fetch("/api/user/points", {
+    fetch(`${URL}/api/user/points`, {
       method: "GET",
       headers: {
         Authorization: `${token}`, // Include the token in the Authorization header

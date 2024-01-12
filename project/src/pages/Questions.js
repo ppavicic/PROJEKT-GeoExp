@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "../styles/Question.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { URL } from "./Constants";
 
 // function shuffleArray(array) {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -42,7 +43,7 @@ function Question() {
       answer: answer,
     };
 
-    fetch("/api/question", {
+    fetch(`${URL}/api/question`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +67,7 @@ function Question() {
   };
 
   useEffect(() => {
-    fetch(`/api/user/cities/question?cityName=${cityName}`, {
+    fetch(`${URL}/api/user/cities/question?cityName=${cityName}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
