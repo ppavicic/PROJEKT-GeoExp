@@ -30097,3 +30097,12 @@ Migrating to CreateAnswer (20231206181857)
   [1m[35m (53.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(1946316079932454125)[0m
   [1m[35m (49.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mUser Load (102.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started POST "/api/session" for 127.0.0.1 at 2024-01-12 18:26:18 +0100
+  [1m[35m (69.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as */*
+  Parameters: {"session"=>{"name"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (78.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:6:in `create'
+Completed 400 Bad Request in 393ms (Views: 0.6ms | ActiveRecord: 318.0ms | Allocations: 5484)
+
+
