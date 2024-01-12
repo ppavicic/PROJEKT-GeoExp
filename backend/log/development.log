@@ -30017,3 +30017,83 @@ app/controllers/api/questions_controller.rb:34:in `check_answers'
 app/controllers/api/questions_controller.rb:63:in `update'
 app/controllers/api/questions_controller.rb:7:in `answer_check'
   [1m[36mCity Load (1.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  [1m[35m (66.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (73.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (63.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1946316079932454125)[0m
+  [1m[35m (59.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20231203193023)
+  [1m[36mTRANSACTION (65.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (59.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying NOT NULL, "points" integer DEFAULT 0, "password_digest" character varying NOT NULL, "token" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (58.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (54.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_lower_name" ON "users" (lower(name))[0m
+  [1m[35m (65.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_token" ON "users" ("token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (151.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231203193023"]]
+  [1m[36mTRANSACTION (109.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCities (20231203194501)
+  [1m[36mTRANSACTION (79.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (106.2ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying NOT NULL, "longitude" float NOT NULL, "latitude" float NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (82.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_cities_on_name" ON "cities" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (60.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231203194501"]]
+  [1m[36mTRANSACTION (53.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserCities (20231203195643)
+  [1m[36mTRANSACTION (88.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (218.5ms)[0m  [1m[35mCREATE TABLE "user_cities" ("id" bigserial primary key, "user_id" bigint, "city_id" bigint, "status" character varying DEFAULT 'inactive' NOT NULL, "score" character varying DEFAULT '0', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_cf19116c1f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_f8a3b4b44f"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (79.4ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_user_id" ON "user_cities" ("user_id")[0m
+  [1m[35m (100.7ms)[0m  [1m[35mCREATE INDEX "index_user_cities_on_city_id" ON "user_cities" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (99.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231203195643"]]
+  [1m[36mTRANSACTION (94.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDescription (20231204220405)
+  [1m[36mTRANSACTION (52.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (70.7ms)[0m  [1m[35mCREATE TABLE "descriptions" ("id" bigserial primary key, "text" text NOT NULL, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5b314c4d9e"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (88.2ms)[0m  [1m[35mCREATE INDEX "index_descriptions_on_city_id" ON "descriptions" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (64.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231204220405"]]
+  [1m[36mTRANSACTION (62.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLinks (20231204221631)
+  [1m[36mTRANSACTION (82.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (63.6ms)[0m  [1m[35mCREATE TABLE "links" ("id" bigserial primary key, "link" character varying NOT NULL, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_4b8eda577e"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (58.0ms)[0m  [1m[35mCREATE INDEX "index_links_on_city_id" ON "links" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (60.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231204221631"]]
+  [1m[36mTRANSACTION (69.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTrivia (20231204222657)
+  [1m[36mTRANSACTION (54.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCREATE TABLE "trivia" ("id" bigserial primary key, "value" text NOT NULL, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_ee7e2a7afb"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (62.4ms)[0m  [1m[35mCREATE INDEX "index_trivia_on_city_id" ON "trivia" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (59.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231204222657"]]
+  [1m[36mTRANSACTION (65.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestion (20231206181524)
+  [1m[36mTRANSACTION (74.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (79.7ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "text" text NOT NULL, "city_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1e790bd8a5"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (89.2ms)[0m  [1m[35mCREATE INDEX "index_questions_on_city_id" ON "questions" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (79.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231206181524"]]
+  [1m[36mTRANSACTION (126.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAnswer (20231206181857)
+  [1m[36mTRANSACTION (65.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (98.8ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "correct" character varying NOT NULL, "value1" character varying NOT NULL, "value2" character varying NOT NULL, "value3" character varying NOT NULL, "question_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (350.8ms)[0m  [1m[35mCREATE INDEX "index_answers_on_question_id" ON "answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (70.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231206181857"]]
+  [1m[36mTRANSACTION (84.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (109.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (96.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (73.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-01-12 16:44:27.225338"], ["updated_at", "2024-01-12 16:44:27.225338"]]
+  [1m[36mTRANSACTION (82.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (53.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(1946316079932454125)[0m
+  [1m[35m (49.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (102.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
