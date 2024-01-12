@@ -14,49 +14,9 @@ function CityInfo() {
   localStorage.setItem("city-id", JSON.stringify(cityData.id));
   const navigate = useNavigate();
 
-  /* function change_screen() {
-    const first = document.getElementById("container1");
-    const second = document.getElementById("container2");
-    if (first !== null) {
-      first.className = "nevidis";
-      second.className = "container-desc";
-    }
-    const panda = document.getElementById("panda");
-    panda.onclick = quiz_start;
-  }*/
-
-  function show_background() {
-    const first = document.getElementById("container1");
-    const second = document.getElementById("container2");
-
-    const slika = document.getElementById("panda");
-
-    if ((first !== null) & (first.className === "container-desc")) {
-      first.className = "nevidis";
-      second.className = "photo-div";
-      slika.src = pandaznanjabezoblacica;
-    } else {
-      first.className = "container-desc";
-      second.className = "nevidis";
-      slika.src = pandaznanja;
-    }
-  }
-
   const quiz_start = (event) => {
     navigate("/quiz");
   };
-
-  /*<div id="container1" class="container-desc">
-          <div id="description">
-            <h2>
-              Dobro došli dragi učenici danas ćete naučiti nesšto novo o Zagrebu
-            </h2>
-            <p>
-              Poškakljajte našu prekrasnu pandu klikom miša kako bi vam ona
-              rekla nešto više o zagrebu
-            </p>
-          </div>
-        </div>*/
 
   const description = (
     <div className="full-page">
@@ -92,56 +52,13 @@ function CityInfo() {
             </button>
           </footer>
         </div>
-        <div id="container2" className="neivdis"></div>
       </div>
 
       <div>
-        <img
-          id="panda"
-          className="panda-img"
-          onClick={show_background}
-          src={pandaznanja}></img>
+        <img id="panda" className="panda-img" src={pandaznanja}></img>
       </div>
     </div>
   );
-  /*const searchParams = new URLSearchParams(location.search);
-  const cityName = searchParams.get("cityName");
-  //const cityDescription = searchParams.get('cityDescription');
-  const encodedPin = searchParams.get("pin");
-  const pin = atob(decodeURIComponent(encodedPin));
-
-  const [pinGenerated, setPinGenerated] = useState(false);
-  const [cityDescription, setCityDescription] = useState("");*/
-
-  // const cityDescription = searchParams.get('cityDescription');
-  // const [cityDescription, setCityDescription] = useState("");
-  // const searchParams = new URLSearchParams(location.search);
-  // const cityName = searchParams.get("cityName");
-  // const [pinGenerated, setPinGenerated] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   fetch(`/api/city/description?city-name=${cityName}`, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `${token}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error(`HTTP error! status: ${res.status}`);
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setCityDescription(data.description);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Greška:", error);
-  //     });
-  // }, [cityName]);
 
   return <div>{description}</div>;
 }

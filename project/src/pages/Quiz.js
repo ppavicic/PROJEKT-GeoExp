@@ -25,7 +25,7 @@ export const Quiz = () => {
   //     },
   //   ];
 
-  const [questions, setQuestions] = useState([]); //change questions1 to questions
+  const [questions, setQuestions] = useState([]); 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const navigate = useNavigate();
@@ -100,14 +100,18 @@ export const Quiz = () => {
   };
 
   const currentQuestion = questions[currentQuestionIndex];
-
+  const shuffle = (array) => { 
+    return array.map((a) => ({ sort: Math.random(), value: a }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((a) => a.value); 
+}; 
   if (currentQuestion !== undefined) {
     return (
       <div className="">
         <Question
           id={currentQuestion.id}
           text={currentQuestion.text}
-          options={currentQuestion.options}
+          options={shuffle(currentQuestion.options)}
           onAnswer={handleAnswer}
         />
       </div>
