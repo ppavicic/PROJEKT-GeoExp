@@ -15,14 +15,12 @@ function Registration() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = { name, password };
-    console.log(user);
     fetch(`${URL}/api/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user }),
     }).then((res) => {
       if (res.status !== 201) {
-        console.log(res);
       } else {
         console.log("New Igrac added");
         navigate("/");
