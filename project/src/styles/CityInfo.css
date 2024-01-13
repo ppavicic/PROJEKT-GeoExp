@@ -209,6 +209,7 @@ header h1{
   margin: 15px;
   font-size: 28px;
   color: #333; /* Add a color that contrasts well with the background */
+  margin-bottom: 20px;
 }
 
 .section-title {

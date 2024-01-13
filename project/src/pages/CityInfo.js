@@ -28,13 +28,13 @@ function CityInfo() {
           <div className="row">
             <div className="leftcolumn">
               <div className="details">
-                <h2 className="section-title">Description</h2>
+                <h2 className="section-title">Opis</h2>
               </div>
               <p>{cityData.description.text}</p>
             </div>
             <div className="rightcolumn1">
               <div className="details">
-                <h2 className="section-title">Trivia</h2>
+                <h2 className="section-title">Zanimljivosti</h2>
               </div>
               <p>{cityData.trivia.value}</p>
             </div>
