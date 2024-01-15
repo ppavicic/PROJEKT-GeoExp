@@ -1,15 +1,4 @@
-.container-desc {
 
-  position: fixed;
-  bottom: 210px;
-  left: 15vw;
-  height: 65vh;
-  width: 70vw;
-  border: 3px solid;
-  border-radius: 40px;
-  background-color: #f5f5f5;
-  
-}
 
 
 .leftcolumn::-webkit-scrollbar {
@@ -53,11 +42,11 @@
 }
 
 .full-page {
-  background-image: url("../Assets/zagreb.jpg");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #f0f0f0;
 }
 
 header  {
@@ -113,10 +102,7 @@ footer {
 }
 
 .details h2{
-  background-color: #666;
-  border: 2px solid black;
-  color: white;
-  border-radius: 10px;
+
   margin: 5px;
   padding: 0px 15px;
 }
@@ -139,11 +125,7 @@ footer {
 }
 header h1{
   margin: 15px;
-  background-color: #666;
-  border: 2px solid black;
-  border-radius: 15px;
-  color: white;
-  padding: 5px 15px;
+
 }
 
 .photo-div{
@@ -159,7 +141,7 @@ header h1{
   background-size: cover;
 }
 .quiz-start {
-  background-color:  #666;;
+  background-color:chocolate;
   border: 2px solid black;
   border-radius: 15px;
   color: white;
@@ -175,6 +157,7 @@ header h1{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: -5px;
 }
 
 .quiz-start:hover {
@@ -208,3 +191,39 @@ header h1{
     margin-bottom: 30px;
   }
 }
+
+
+
+.container-desc {
+  position: fixed;
+  bottom: 210px;
+  left: 15vw;
+  height: 65vh;
+  width: 70vw;
+  border: 3px solid;
+  border-radius: 40px;
+  background-color: antiquewhite;
+}
+
+.city-title {
+  margin: 15px;
+  font-size: 28px;
+  color: #333; /* Add a color that contrasts well with the background */
+  margin-bottom: 20px;
+}
+
+.section-title {
+  margin: 5px;
+  padding: 0px 15px;
+  font-size: 20px;
+  color: #555; /* Adjust the color for better readability */
+}
+
+.more-info-link {
+  color: #007bff; /* Use a color that stands out for links */
+  text-decoration: none;
+}
+
+
+
+
